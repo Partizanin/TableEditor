@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="paginationApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagination Test Page</title>
+
+    <script src="../libs/jquery/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://code.angularjs.org/tools/system.js"></script>
+    <script src="../libs/angular/angular.min.js"></script>
+    <script src="../js/pagination2.js"></script>
+
+</head>
+
+
+<body ng-controller="paginationController">
+<ul ng-repeat="user in filteredUser">
+    <li>
+        {{user.Id}} {{user.Name}}
+    </li>
+</ul>
+
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li ng-class="currentPage===1 ? 'page-item disabled':'page-item'">
+            <a ng-click="setPage(1)" class="page-link" href="#">First</a></li>
+
+        <li ng-class="currentPage===1 ? 'page-item disabled':'page-item'">
+            <a ng-click="setPage(currentPage-1)" class="page-link" href="#">Previous</a></li>
+        <!--'page-item active'-->
+        <li ng-repeat="page in pages" class="'page-item'" ng-class="{'page-item active': currentPage === page}">
+            <a class="page-link" ng-click="setPage(page)" href="#">{{page}}</a></li>
+
+
+        <li ng-class="currentPage===totalPages ? 'page-item disabled':'page-item'">
+            <a ng-click="setPage(currentPage+1)" class="page-link" href="#">Next</a></li>
+
+        <li ng-class="currentPage===totalPages ? 'page-item disabled':'page-item'">
+            <a ng-click="setPage(totalPages)" class="page-link" href="#">Last</a></li>
+    </ul>
+</nav>
+{{"currentPage: " + currentPage}}
+{{"users: " + users.users.length}}
+{{"pages: " + pages.length}}
+</body>
+</html>
