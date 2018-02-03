@@ -7,8 +7,9 @@ app.controller("myController", function ($scope, $http, $q) {
 
     $scope.filteredUser = [];
     $scope.currentPage = 1;
-    $scope.itemsPerPage = 5;
+    $scope.itemsPerPage = 10;
     $scope.paginationLength = 4;
+    /*todo: if pagination length <4 pagination length = 4*/
     $scope.totalPages = 0;
 
     $scope.lastpage = 0;
@@ -28,10 +29,7 @@ app.controller("myController", function ($scope, $http, $q) {
 
         $scope.callToServer("read", "").then(function (data) {
             $scope.users = data;
-            $scope.totalPages = Math.ceil($scope.users.users.length / $scope.itemsPerPage);
-            $scope.lastpage = Math.ceil($scope.users.users.length / $scope.numPerPage);
-            $scope.pages = setPages();
-
+            setPages();
             initWatch();
         });
 
@@ -39,25 +37,49 @@ app.controller("myController", function ($scope, $http, $q) {
 
 
     $scope.selectedChange = function () {
-        $scope.itemsPerPage = $scope.selectedValue
+        var temp = $scope.itemsPerPage;
+        $scope.itemsPerPage = (function () {
+
+            var selectedValue = $scope.selectedValue;
+
+            if (selectedValue === "all") {
+                return $scope.users.users.length;
+            } else {
+                return parseInt(selectedValue);
+            }
+
+        })();
+        setPages();
+        console.log("itemPerPage Changed from " + temp + " to " + $scope.itemsPerPage);
+        $scope.setPage($scope.lastpage);
     };
 
     function setPages() {
+        /*todo: bug - when you choose 2 don`t show 1*/
+
+        console.log("Pages: " + $scope.pages);
         $scope.totalPages = Math.ceil($scope.users.users.length / $scope.itemsPerPage);
+
+        $scope.lastpage = Math.ceil($scope.users.users.length / $scope.itemsPerPage);
 
         var result = [];
 
-        if ($scope.totalPages < $scope.paginationLength) {
-            $scope.paginationLength = Math.ceil($scope.totalPages / 2);
-        }
+        $scope.paginationLength = (function () {
+            if ($scope.selectedValue !== "all") {
+                return Math.ceil(($scope.totalPages / 2) + 1);
+            } else {
+                return 1;
+            }
+
+        })();
 
 
         for (var i = 1; i < $scope.paginationLength + 1; i++) {
             result.push(i);
         }
 
-        return result;
-
+        $scope.pages = result;
+        console.log("Pages: " + $scope.pages);
     }
 
     $scope.setPage = function (setPageNumber) {
@@ -217,6 +239,8 @@ app.controller("myController", function ($scope, $http, $q) {
     function initWatch() {
         $scope.$watch('currentPage + itemsPerPage', function () {
             if ($scope.itemsPerPage !== 'all') {
+                $scope.itemsPerPage = parseInt($scope.itemsPerPage);
+
                 var begin = (($scope.currentPage - 1) * $scope.itemsPerPage)
                     , end = begin + $scope.itemsPerPage;
 
