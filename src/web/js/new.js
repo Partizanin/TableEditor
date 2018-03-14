@@ -1,7 +1,41 @@
-var app = angular.module("myApp2", []);
+let app = angular.module("myApp2", []);
 
 app.controller("myController", function ($scope, $http, $q) {
 
+
+    $scope.closeAddModal = function () {
+        console.log('hide Modal');
+
+    };
+
+    $scope.addNewUser = function () {
+        /*get data from form*/
+        var id = $("#input_id_add").next().val();
+        var name = $("#input_name_add").next().val();
+        var position = $("#input_position_add").next().val();
+        var office = $("#input_office_add").next().val();
+        var age = $("#input_age_add").next().val();
+        var startDate = $("#input_startDate_add").next().val();
+        var sallary = $("#input_sallary_add").next().val();
+        $('#addModal').modal("hide");
+        /*Validate Data*/
+        /*do something*/
+
+
+    };
+
+
+    $('#addModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+
+        var recipient = button.data('whatever'); // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this);
+        // modal.find('.modal-title').text('New message to ' + recipient);
+        modal.find('.modal-body input').val(recipient);
+
+    });
 
     $scope.users = {};
 

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp2">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>New Design Page</title>
 
-    <script src="../js/libs.min.js"></script>
+    <!--<script src="../js/libs.min.js"></script>-->
     <!--<script src="../js/jquery-2.1.1.min.js"></script>-->
 
     <!---->
@@ -27,22 +27,26 @@
 
     <!--<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
 
-    <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 
     <!--<link data-require="bootstrap-css@*" data-semver="3.3.1" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />-->
     <!--<script data-require="ui-bootstrap@*" data-semver="0.12.1"-->
     <!--src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.min.js"></script>-->
 
-    <script src="../js/app.js"></script>
+    <!--<script src="../js/app.js"></script>-->
     <!--<script src="../js/main.js"></script>-->
-    <script src="bundle.js"></script>
+    <!--<script src="bundle.js"></script>-->
+
+
 </head>
 
 <!--todo: make top control panel scroled with page-->
 
-<body ng-controller="myController">
+<body>
+
+<my-component>Loading...</my-component>
 
 <div class="up_panel">
     <h2 class="head_title"><i class="fa fa-user-secret " aria-hidden="true"></i> Users Table</h2>
@@ -279,6 +283,12 @@
         </div>
     </div>
 </div>
-
+<script src="public/polyfills.js"></script>
+    
+<script src="public/app.js"></script>
 </body>
 </html>
+<!--<script src="public/polyfills.js"></script>
+    
+<script src="public/app.js"></script>
+-->
