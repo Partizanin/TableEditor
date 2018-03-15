@@ -4,7 +4,7 @@
   <div class="d-flex flex-row">
     <div class="item"><p>Show</p></div>
     <select (change)="selectedChange($event)" id="selectPane" title="" [(ngModel)]="selectedValue">
-      <option *ngFor="let value of selectValues" [selected]="selectedValue == '10'" [value]="value">{{value}}</option>
+      <option *ngFor="let value of selectValues" [value]="value">{{value}}</option>
     </select>
     <div class="item">
       <p>entries</p>

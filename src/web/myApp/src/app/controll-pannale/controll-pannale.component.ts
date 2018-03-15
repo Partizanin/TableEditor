@@ -7,7 +7,7 @@ import {Component} from '@angular/core';
 })
 export class ControllPannaleComponent {
   selectValues = ['10', '15', '20', 'all'];
-  selectedValue = 10;
+  selectedValue: string = '10';
   prewiousSelectedWalue = this.selectedValue;
 
   constructor() {
