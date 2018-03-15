@@ -1,0 +1,22 @@
+<div class="up_panel">
+  <h2 class="head_title"><i class="fa fa-user-secret " aria-hidden="true"></i> Users Table</h2>
+
+  <div class="d-flex flex-row">
+    <div class="item"><p>Show</p></div>
+    <select (change)="selectedChange($event)" id="selectPane" title="" [(ngModel)]="selectedValue">
+      <option *ngFor="let value of selectValues" [selected]="selectedValue == '10'" [value]="value">{{value}}</option>
+    </select>
+    <div class="item">
+      <p>entries</p>
+    </div>
+
+
+    <button type="button" data-toggle="modal" data-target="#addModal" id="addUser" class="btn btn-success">
+      <i class="fa fa-user-plus" aria-hidden="true"></i> Add User
+    </button>
+    <div class="item2">
+      <label id="searchLabel">Search:</label><input id="searchInput" ng-change="searchInput()"
+                                                    ng-model="search" type="text" placeholder="searchQuery">
+    </div>
+  </div>
+</div>

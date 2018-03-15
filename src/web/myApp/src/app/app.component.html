@@ -1,30 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<div class="up_panel">
-  <h2 class="head_title"><i class="fa fa-user-secret " aria-hidden="true"></i> Users Table</h2>
-
-
-  <div class="d-flex flex-row">
-    <div class="item"><p>Show</p></div>
-    <select ng-model="selectedValue" ng-change="selectedChange()" id="selectPane" title="">
-      <option value="10">10</option>
-      <option value="15">15</option>
-      <option value="20">20</option>
-      <option value="all">all</option>
-    </select>
-
-    <div class="item"><p>entries</p></div>
-
-
-    <button type="button" data-toggle="modal" data-target="#addModal" id="addUser" class="btn btn-success">
-      <i class="fa fa-user-plus" aria-hidden="true"></i> Add User
-    </button>
-    <div class="item2">
-      <label id="searchLabel">Search:</label><input id="searchInput" ng-change="searchInput()"
-                                                    ng-model="search" type="text" placeholder="searchQuery">
-    </div>
-  </div>
-</div>
+<app-controll-pannale></app-controll-pannale>
 
 
 <table class="table  table-striped">
@@ -71,15 +47,22 @@
   </thead>
   <tbody>
   <tr ng-repeat="user in filteredUser|filter:search|orderBy:orderByField:reverseSort">
-    <td>{{user.id}}</td>
-    <td>{{user.name}}</td>
-    <td>{{user.position}}</td>
-    <td>{{user.office}}</td>
-    <td>{{user.age}}</td>
-    <td>{{user.startDate}}</td>
-    <td>{{user.salary}}</td>
+    <!--<td>{{user.id}}</td>-->
+    <!--<td>{{user.name}}</td>-->
+    <!--<td>{{user.position}}</td>-->
+    <!--<td>{{user.office}}</td>-->
+    <!--<td>{{user.age}}</td>-->
+    <!--<td>{{user.startDate}}</td>-->
+    <!--<td>{{user.salary}}</td>-->
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
     <td>
-      <button id="{{user.id}}" type="button" data-toggle="modal" data-target="#editingModal"
+      <!--todo:{{user.id}} add to id tag-->
+      <button id="todo" type="button" data-toggle="modal" data-target="#editingModal"
               data-whatever="@getbootstrap"
               class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
@@ -89,7 +72,6 @@
   </tbody>
 
 </table>
-
 
 <nav aria-label="Page navigation example">
   <ul class="pagination pagination-lg justify-content-center">
@@ -236,3 +218,4 @@
     </div>
   </div>
 </div>
+
