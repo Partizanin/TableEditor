@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Action, AppService} from '../shared/AppService';
 
 declare var $: any;
 
@@ -10,11 +11,29 @@ declare var $: any;
 export class ModalDialogComponent implements OnInit {
   display = 'none';
 
-  constructor() {
+  constructor(private service: AppService) {
+    this.service.listen().subscribe((m: Action) => {
+      console.log(m);
+      this.showModel(m);
+    })
   }
 
   ngOnInit() {
   }
 
 
+  addNewUser() {
+    console.log('addUser');
+    $('#addModal').modal('hide');
+  }
+
+  private showModel(action: Action) {
+    let modelType = action.data;
+
+    if (modelType === 'open modal dialog edit') {
+      console.log('open edit dialog')
+    } else if (modelType == 'open modal dialog create') {
+      console.log('open create dialog');
+    }
+  }
 }
