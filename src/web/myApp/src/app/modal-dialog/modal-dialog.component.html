@@ -1,0 +1,78 @@
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="addModalLabel">Adding field</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="input_id_add">Id</span>
+
+          </div>
+          <input type="text" class="form-control" placeholder="Id" aria-label="Username"
+                 aria-describedby="basic-addon1">
+        </div>
+        <br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="input_name_add">Name</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Name" aria-label="Username"
+                 aria-describedby="basic-addon1">
+        </div>
+        <br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="input_position_add">Position</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Position" aria-label="Username"
+                 aria-describedby="basic-addon1">
+        </div>
+        <br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="input_office_add">Office</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Office" aria-label="Username"
+                 aria-describedby="basic-addon1">
+        </div>
+        <br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="input_age_add">Age</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Age" aria-label="Username"
+                 aria-describedby="basic-addon1">
+        </div>
+        <br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="input_startDate_add">StartDate</span>
+
+          </div>
+          <input type="text" class="form-control" placeholder="StartDate" aria-label="Username"
+                 aria-describedby="basic-addon1">
+        </div>
+        <br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="input_sallary_add">Sallary</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Sallary" aria-label="Username"
+                 aria-describedby="basic-addon1">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" ng-click="closeAddModal()" data-dismiss="modal">Cancel
+        </button>
+        <button type="button" ng-click="addNewUser()" class="btn btn-success">Add</button>
+      </div>
+    </div>
+  </div>
+</div>

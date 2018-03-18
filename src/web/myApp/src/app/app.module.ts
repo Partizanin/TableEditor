@@ -5,12 +5,14 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {ControllPannaleComponent} from './controll-pannale/controll-pannale.component';
 import {FormsModule} from '@angular/forms';
+import {ModalDialogComponent} from './modal-dialog/modal-dialog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ControllPannaleComponent
+    ControllPannaleComponent,
+    ModalDialogComponent
   ],
   imports: [
     BrowserModule, FormsModule
