@@ -12,9 +12,8 @@ export class ModalDialogComponent implements OnInit {
   display = 'none';
 
   constructor(private service: AppService) {
-    this.service.listen().subscribe((m: Action) => {
-      console.log(m);
-      this.showModel(m);
+    this.service.listen().subscribe((action: Action) => {
+      this.showModel(action);
     })
   }
 
@@ -34,6 +33,7 @@ export class ModalDialogComponent implements OnInit {
       console.log('open edit dialog')
     } else if (modelType == 'open modal dialog create') {
       console.log('open create dialog');
+      $('#addModal').modal('show');
     }
   }
 }

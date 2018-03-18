@@ -21,8 +21,6 @@ export class ControllPannaleComponent implements OnInit {
   }
 
   modalShow(modelType: string) {
-    console.log(modelType);
-
     this.onClick.emit('emit click action from controll pannel component');
     let action = new Action();
     action.event = 'click';
