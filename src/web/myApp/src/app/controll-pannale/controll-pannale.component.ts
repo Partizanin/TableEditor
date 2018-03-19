@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Action, AppService} from '../shared/AppService';
 
 @Component({
@@ -11,8 +11,6 @@ export class ControllPannaleComponent implements OnInit {
   selectedValue: string = '10';
   prewiousSelectedWalue = this.selectedValue;
 
-  @Output() onClick = new EventEmitter();
-
   constructor(private service: AppService) {
   }
 
@@ -21,11 +19,10 @@ export class ControllPannaleComponent implements OnInit {
   }
 
   modalShow(modelType: string) {
-    this.onClick.emit('emit click action from controll pannel component');
     let action = new Action();
     action.event = 'click';
     action.data = `open modal dialog ${modelType}`;
-    this.service.changeAction(action);
+    this.service.showModal(action);
   }
 
   selectedChange(event) {

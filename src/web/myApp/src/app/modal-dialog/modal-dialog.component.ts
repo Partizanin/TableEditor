@@ -12,9 +12,9 @@ export class ModalDialogComponent implements OnInit {
   display = 'none';
 
   constructor(private service: AppService) {
-    this.service.listen().subscribe((action: Action) => {
+    this.service.actionEvent.subscribe((action: Action) => {
       this.showModel(action);
-    })
+    });
   }
 
   ngOnInit() {

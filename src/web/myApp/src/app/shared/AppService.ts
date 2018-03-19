@@ -1,18 +1,16 @@
-import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
+import {EventEmitter, Injectable} from '@angular/core';
 
 @Injectable()
 export class AppService {
-  private _listners = new Subject<Action>();
+  actionEvent: EventEmitter<any> = new EventEmitter();
 
-  listen(): Observable<Action> {
-    return this._listners.asObservable();
+
+  constructor() {
   }
 
-  changeAction(changeAction: Action) {
-    this._listners.next(changeAction);
-  }
+  showModal(actyion: Action) {
+    this.actionEvent.emit(actyion);
+  };
 
 }
 
