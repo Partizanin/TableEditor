@@ -2,42 +2,28 @@
 <table class="table  table-striped">
   <thead class="thead-dark">
   <tr>
-    <th scope="col" id="Id"><a ng-click="sortClick($event); orderByField='id'; reverseSort = !reverseSort"
-                               href="#">Id</a>
-      <i ng-class="orderByField === 'id' ? sortedIconClass: defaultIconClass"
-         aria-hidden="true"></i>
+    <th scope="col" id="Id"><a (click)="sortClick($event)" href="#">Id</a>
+      <i ngClass="{{getSortIcon('id')}}" aria-hidden="true"></i>
     </th>
-    <th scope="col" id="Name"><a
-      href="#" ng-click="sortClick($event); orderByField='name'; reverseSort = !reverseSort">Name </a>
-      <i ng-class="orderByField ==='name' ? sortedIconClass: defaultIconClass"
-         aria-hidden="true"></i>
+    <th scope="col" id="Name"><a (click)="sortClick($event)" href="#">Name</a>
+      <i ngClass="{{getSortIcon('name')}}" aria-hidden="true"></i>
     </th>
-    <th scope="col" id="Position"><a href="#"
-                                     ng-click="sortClick($event); orderByField='position'; reverseSort = !reverseSort">
-      Position</a> <i
-      ng-class="orderByField ==='position' ? sortedIconClass: defaultIconClass" aria-hidden="true"></i>
+    <th scope="col" id="Position"><a href="#" (click)="sortClick($event)">Position</a>
+      <i ngClass="{{getSortIcon('position')}}" aria-hidden="true"></i>
     </th>
-    <th scope="col" id="Office"><a href="#"
-                                   ng-click="sortClick($event); orderByField='office'; reverseSort = !reverseSort">
-      Office</a> <i ng-class="orderByField ==='office' ? sortedIconClass: defaultIconClass"
-                    aria-hidden="true"></i>
+    <th scope="col" id="Office"><a href="#" (click)="sortClick($event)">Office</a>
+      <i ngClass="{{getSortIcon('office')}}" aria-hidden="true"></i>
     </th>
-    <th scope="col" id="Age"><a href="#"
-                                ng-click="sortClick($event); orderByField='age'; reverseSort = !reverseSort">Age</a>
-      <i ng-class="orderByField ==='age' ? sortedIconClass: defaultIconClass"
-         aria-hidden="true"></i>
+    <th scope="col" id="Age"><a href="#" (click)="sortClick($event)">Age</a>
+      <i ngClass="{{getSortIcon('age')}}" aria-hidden="true"></i>
     </th>
-    <th scope="col" id="StartDate"
-    ><a href="#" ng-click="sortClick($event); orderByField='startDate'; reverseSort = !reverseSort">StartDate</a> <i
-      ng-class="orderByField ==='startDate' ? sortedIconClass: defaultIconClass" aria-hidden="true"></i>
+    <th scope="col" id="StartDate"><a href="#" (click)="sortClick($event)">StartDate</a>
+      <i ngClass="{{getSortIcon('startDate')}}" aria-hidden="true"></i>
     </th>
-    <th scope="col" id="Salary"><a href="#"
-                                   ng-click="sortClick($event); orderByField='salary'; reverseSort = !reverseSort">
-      Salary</a> <i ng-class="orderByField ==='salary' ? sortedIconClass: defaultIconClass"
-                    aria-hidden="true"></i>
+    <th scope="col" id="Salary"><a href="#" (click)="sortClick($event)">Salary</a>
+      <i ngClass="{{getSortIcon('salary')}}" aria-hidden="true"></i>
     </th>
-    <th scope="col">
-
+    <th scope="col" id="actionCloumn">Action
     </th>
   </tr>
   </thead>

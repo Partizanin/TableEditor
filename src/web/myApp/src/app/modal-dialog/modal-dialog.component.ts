@@ -42,7 +42,7 @@ export class ModalDialogComponent implements OnInit {
       console.log('edit User');
     }
 
-
+    /*todo implement validation*/
     if (this.isValid) {
       $('#modal').modal('hide');
     } else {

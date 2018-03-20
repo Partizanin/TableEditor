@@ -2,12 +2,6 @@ import java.sql.DriverManager
 import java.sql.Statement
 import java.util.*
 
-fun main(args: Array<String>) {
-    val dbConnectionsKT = DBConnectionsKT()
-    println(dbConnectionsKT.read())
-
-}
-
 class DBConnectionsKT {
 
     fun getByID(id: Long): EmployeeKT {
