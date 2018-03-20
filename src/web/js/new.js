@@ -49,7 +49,7 @@ app.controller("myController", function ($scope, $http, $q) {
     $scope.lastpage = 0;
 
 
-    $scope.orderByField = 'Name';
+    $scope.orderByField = 'name';
     $scope.defaultIconClass = 'fa fa-exchange fa-rotate-90';
     $scope.sortedIconClass = 'fa fa-sort-amount-asc';
     $scope.reverseSort = false;

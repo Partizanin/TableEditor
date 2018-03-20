@@ -18,7 +18,7 @@
         <spring.version>4.0.5.RELEASE</spring.version>
         <mysql.connector.version>5.1.21</mysql.connector.version>
         <hibernate.version>5.2.10.Final</hibernate.version>
-        <kotlin.version>1.2.21</kotlin.version>
+        <kotlin.version>1.2.30</kotlin.version>
         <json.version>20090211</json.version>
         <mysqlConnector.version>5.1.6</mysqlConnector.version>
         <javasis.version>3.12.1.GA</javasis.version>

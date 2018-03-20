@@ -2,12 +2,18 @@ import java.sql.DriverManager
 import java.sql.Statement
 import java.util.*
 
+fun main(args: Array<String>) {
+    val dbConnectionsKT = DBConnectionsKT()
+    println(dbConnectionsKT.read())
+
+}
+
 class DBConnectionsKT {
 
     fun getByID(id: Long): EmployeeKT {
 
         val resultSet = getStatement().executeQuery("SELECT * FROM empdata\n" +
-                "WHERE Id='" + id + "';")
+                "WHERE id='" + id + "';")
 
         var name = ""
         var position = " "
@@ -17,12 +23,12 @@ class DBConnectionsKT {
         var salary = ""
 
         while (resultSet.next()) {
-            name = resultSet.getString("Name")
-            position = resultSet.getString("Position")
-            office = resultSet.getString("Office")
-            age = Integer.parseInt(resultSet.getString("Age"))
-            salary = resultSet.getString("Salary")
-            startDate = resultSet.getString("StartDate")
+            name = resultSet.getString("name")
+            position = resultSet.getString("position")
+            office = resultSet.getString("office")
+            age = Integer.parseInt(resultSet.getString("age"))
+            salary = resultSet.getString("salary")
+            startDate = resultSet.getString("startDate")
         }
 
         return EmployeeKT(id, name, position, office, age, startDate, salary)
@@ -31,7 +37,7 @@ class DBConnectionsKT {
 
     fun create(employee: EmployeeKT) {
 
-        getStatement().executeUpdate("INSERT INTO empdata(Id,Name, Position, Office, Age, `StartDate`, Salary) " +
+        getStatement().executeUpdate("INSERT INTO empdata(id,name, position, office, age, `startDate`, salary) " +
                 " VALUE ('" + employee.id + "','" + employee.name + "','"
                 + employee.position + "','" + employee.office + "','"
                 + employee.age + "','" + employee.startDate + "','"
@@ -45,13 +51,13 @@ class DBConnectionsKT {
         val resultSet = getStatement().executeQuery("SELECT * FROM empdata;")
 
         while (resultSet.next()) {
-            val id = Integer.parseInt(resultSet.getString("Id")).toLong()
-            val name = resultSet.getString("Name")
-            val position = resultSet.getString("Position")
-            val office = resultSet.getString("Office")
-            val age = Integer.parseInt(resultSet.getString("Age"))
-            val startDate = resultSet.getString("StartDate")
-            val salary = resultSet.getString("Salary")
+            val id = Integer.parseInt(resultSet.getString("id")).toLong()
+            val name = resultSet.getString("name")
+            val position = resultSet.getString("position")
+            val office = resultSet.getString("office")
+            val age = Integer.parseInt(resultSet.getString("age"))
+            val startDate = resultSet.getString("startDate")
+            val salary = resultSet.getString("salary")
 
             list.add(EmployeeKT(id, name, position, office, age, startDate, salary))
         }
@@ -61,15 +67,15 @@ class DBConnectionsKT {
 
     fun update(employee: EmployeeKT) {
         getStatement().executeUpdate("UPDATE empdata\n" +
-                "SET Name = '" + employee.name + "', Position = '" + employee.position + "'," +
-                "Office ='" + employee.office + "', Age = '" + employee.age + "', `StartDate`= '"
-                + employee.startDate + "', Salary = '" + employee.salary + "'\n" +
-                "WHERE Id= '" + employee.id + "';")
+                "SET name = '" + employee.name + "', position = '" + employee.position + "'," +
+                "office ='" + employee.office + "', age = '" + employee.age + "', `startDate`= '"
+                + employee.startDate + "', salary = '" + employee.salary + "'\n" +
+                "WHERE id= '" + employee.id + "';")
     }
 
     fun delete(employee: EmployeeKT) {
         getStatement().executeUpdate("DELETE FROM empdata\n" +
-                "WHERE Id='" + employee.id + "';")
+                "WHERE id='" + employee.id + "';")
     }
 
     private fun getStatement(): Statement {

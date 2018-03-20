@@ -18,10 +18,10 @@ export class ControllPannaleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  modalShow(modelType: string) {
+  showCreateModal() {
     let action = new Action();
-    action.event = 'click';
-    action.data = `open modal dialog ${modelType}`;
+    action.actionEvent = 'open modal dialog create';
+    action.data = `open modal dialog create`;
     this.service.showModal(action);
   }
 

@@ -1,0 +1,64 @@
+<!--<p>{{users.length}}</p>-->
+<table class="table  table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col" id="Id"><a ng-click="sortClick($event); orderByField='id'; reverseSort = !reverseSort"
+                               href="#">Id</a>
+      <i ng-class="orderByField === 'id' ? sortedIconClass: defaultIconClass"
+         aria-hidden="true"></i>
+    </th>
+    <th scope="col" id="Name"><a
+      href="#" ng-click="sortClick($event); orderByField='name'; reverseSort = !reverseSort">Name </a>
+      <i ng-class="orderByField ==='name' ? sortedIconClass: defaultIconClass"
+         aria-hidden="true"></i>
+    </th>
+    <th scope="col" id="Position"><a href="#"
+                                     ng-click="sortClick($event); orderByField='position'; reverseSort = !reverseSort">
+      Position</a> <i
+      ng-class="orderByField ==='position' ? sortedIconClass: defaultIconClass" aria-hidden="true"></i>
+    </th>
+    <th scope="col" id="Office"><a href="#"
+                                   ng-click="sortClick($event); orderByField='office'; reverseSort = !reverseSort">
+      Office</a> <i ng-class="orderByField ==='office' ? sortedIconClass: defaultIconClass"
+                    aria-hidden="true"></i>
+    </th>
+    <th scope="col" id="Age"><a href="#"
+                                ng-click="sortClick($event); orderByField='age'; reverseSort = !reverseSort">Age</a>
+      <i ng-class="orderByField ==='age' ? sortedIconClass: defaultIconClass"
+         aria-hidden="true"></i>
+    </th>
+    <th scope="col" id="StartDate"
+    ><a href="#" ng-click="sortClick($event); orderByField='startDate'; reverseSort = !reverseSort">StartDate</a> <i
+      ng-class="orderByField ==='startDate' ? sortedIconClass: defaultIconClass" aria-hidden="true"></i>
+    </th>
+    <th scope="col" id="Salary"><a href="#"
+                                   ng-click="sortClick($event); orderByField='salary'; reverseSort = !reverseSort">
+      Salary</a> <i ng-class="orderByField ==='salary' ? sortedIconClass: defaultIconClass"
+                    aria-hidden="true"></i>
+    </th>
+    <th scope="col">
+
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <!--<tr ng-repeat="user in filteredUser|filter:search|orderBy:orderByField:reverseSort">-->
+  <tr *ngFor="let user of users">
+    <td>{{user.id}}</td>
+    <td>{{user.name}}</td>
+    <td>{{user.position}}</td>
+    <td>{{user.office}}</td>
+    <td>{{user.age}}</td>
+    <td>{{user.startDate}}</td>
+    <td>{{user.salary}}</td>
+    <td>
+      <!--todo:{{user.id}} add to id tag-->
+      <button id="todo" type="button" (click)="showEdithMoadal(user)"
+              class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+    </td>
+  </tr>
+
+  </tbody>
+
+</table>
