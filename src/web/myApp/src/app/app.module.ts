@@ -9,6 +9,7 @@ import {ModalDialogComponent} from './modal-dialog/modal-dialog.component';
 import {AppTabelComponent} from './app-tabel/app-tabel.component';
 import {MatDialogModule} from '@angular/material';
 import {FilterPipe} from './filter.pipe';
+import {OrderByPipe} from './order-by.pipe';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {FilterPipe} from './filter.pipe';
     ControllPannaleComponent,
     ModalDialogComponent,
     AppTabelComponent,
-    FilterPipe
+    FilterPipe,
+    OrderByPipe
   ],
   imports: [
     BrowserModule, FormsModule, MatDialogModule
