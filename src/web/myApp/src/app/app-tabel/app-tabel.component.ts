@@ -11,17 +11,25 @@ import {User} from '../shared/User';
 export class AppTabelComponent implements OnInit {
   users: User[];
   orderByField: string;
-  reverseSort = false;
-  defaultIconClass = 'fa fa-exchange fa-rotate-90';
-  sortedIconClass = 'fa fa-sort-amount-asc';
+  reverseSort: boolean;
+  defaultIconClass: string;
+  sortedIconClass: string;
   searchValue: string;
 
   constructor(private service: AppService) {
   }
 
   ngOnInit() {
+    this.sortedIconClass = 'fa fa-sort-amount-asc';
+    this.defaultIconClass = 'fa fa-exchange fa-rotate-90';
+    this.reverseSort = false;
     this.orderByField = 'id';
     this.users = this.service.users;
+    this.service.searchValueChange.subscribe(
+      (newSearchValue: string) => {
+        this.searchValue = newSearchValue;
+      });
+
   }
 
   showEdithMoadal(user: User) {

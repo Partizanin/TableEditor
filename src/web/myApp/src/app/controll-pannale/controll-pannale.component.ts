@@ -10,6 +10,7 @@ export class ControllPannaleComponent implements OnInit {
   selectValues = ['10', '15', '20', 'all'];
   selectedValue: string = '10';
   prewiousSelectedWalue = this.selectedValue;
+  searchValue: string;
 
   constructor(private service: AppService) {
   }
@@ -28,5 +29,9 @@ export class ControllPannaleComponent implements OnInit {
   selectedChange(event) {
     console.log(`changed from ${this.prewiousSelectedWalue} to ${event.target.value}`);
     this.prewiousSelectedWalue = this.selectedValue;
+  }
+
+  changeInput() {
+    this.service.changeSearchValue(this.searchValue)
   }
 }

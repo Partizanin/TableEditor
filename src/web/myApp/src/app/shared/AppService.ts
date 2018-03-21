@@ -4,6 +4,7 @@ import {User} from './User';
 @Injectable()
 export class AppService {
   actionEvent: EventEmitter<any> = new EventEmitter();
+  searchValueChange: EventEmitter<string> = new EventEmitter();
   users: User[] = [];
 
 
@@ -18,6 +19,10 @@ export class AppService {
 
     this.users.push(user1, user2, user3, user4);
 
+  }
+
+  changeSearchValue(searchValue: string) {
+    this.searchValueChange.emit(searchValue);
   }
 
 
