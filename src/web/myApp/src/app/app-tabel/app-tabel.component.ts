@@ -6,6 +6,7 @@ import {User} from '../shared/User';
   selector: 'app-tabel',
   templateUrl: './app-tabel.component.html',
   styleUrls: ['./app-tabel.component.css']
+
 })
 export class AppTabelComponent implements OnInit {
   users: User[];
@@ -13,6 +14,7 @@ export class AppTabelComponent implements OnInit {
   reverseSort = false;
   defaultIconClass = 'fa fa-exchange fa-rotate-90';
   sortedIconClass = 'fa fa-sort-amount-asc';
+  searchValue: string;
 
   constructor(private service: AppService) {
   }

@@ -1,4 +1,5 @@
 <!--<p>{{users.length}}</p>-->
+<input type="text" [(ngModel)]="searchValue">
 <table class="table  table-striped">
   <thead class="thead-dark">
   <tr>
@@ -29,7 +30,7 @@
   </thead>
   <tbody>
   <!--<tr ng-repeat="user in filteredUser|filter:search|orderBy:orderByField:reverseSort">-->
-  <tr *ngFor="let user of users">
+  <tr *ngFor="let user of users | filter:searchValue">
     <td>{{user.id}}</td>
     <td>{{user.name}}</td>
     <td>{{user.position}}</td>

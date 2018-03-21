@@ -8,6 +8,7 @@ import {FormsModule} from '@angular/forms';
 import {ModalDialogComponent} from './modal-dialog/modal-dialog.component';
 import {AppTabelComponent} from './app-tabel/app-tabel.component';
 import {MatDialogModule} from '@angular/material';
+import {FilterPipe} from './filter.pipe';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {MatDialogModule} from '@angular/material';
     AppComponent,
     ControllPannaleComponent,
     ModalDialogComponent,
-    AppTabelComponent
+    AppTabelComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule, FormsModule, MatDialogModule
