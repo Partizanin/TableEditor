@@ -17,6 +17,18 @@ export class AppTabelComponent implements OnInit {
   searchValue: string;
 
   constructor(private service: AppService) {
+    this.service.searchValueChange.subscribe((action: Action) => {
+      this.controlPannelActionListener(action);
+    });
+  }
+
+  private controlPannelActionListener(action: Action) {
+    let actionEvent: string = action.actionEvent;
+    switch (actionEvent) {
+      case 'new search value':
+        this.searchValue = action.data;
+        break;
+    }
   }
 
   ngOnInit() {
@@ -25,11 +37,6 @@ export class AppTabelComponent implements OnInit {
     this.reverseSort = false;
     this.orderByField = 'id';
     this.users = this.service.users;
-    this.service.searchValueChange.subscribe(
-      (newSearchValue: string) => {
-        this.searchValue = newSearchValue;
-      });
-
   }
 
   showEdithMoadal(user: User) {

@@ -19,30 +19,28 @@ export class ModalDialogComponent implements OnInit {
   officeInput: string;
   positionInput: string;
   nameInput: string;
-  isHidden: true;
   private isValid = true;
 
   constructor(private service: AppService) {
-    this.service.actionEvent.subscribe((action: Action) => {
-      this.showModel(action);
+    this.service.controlPannelActionEvent.subscribe((action: Action) => {
+      this.controlPannelActionListener(action);
     });
-
   }
 
   ngOnInit() {
-
   }
 
-
   successModalButtonClick() {
-
     if (this.modalTitle === 'Create new user') {
       console.log('addUser');
+
     } else {
       console.log('edit User');
     }
 
-    /*todo implement validation*/
+    /*todo implement validation
+    * hidlight invalid fields
+    * https://getbootstrap.com/docs/4.0/components/forms/?#validation*/
     if (this.isValid) {
       $('#modal').modal('hide');
     } else {
@@ -50,27 +48,35 @@ export class ModalDialogComponent implements OnInit {
     }
   }
 
-  private showModel(action: Action) {
-    console.log(`is hidden ${this.isHidden}`);
-
-    let modelType = action.actionEvent;
-
-    if (modelType === 'open modal dialog edit') {
-      this.showEditModalDialog(action);
-    } else if (modelType == 'open modal dialog create') {
-      this.showCreateModal();
+  private controlPannelActionListener(action: Action) {
+    let actionEvent = action.actionEvent;
+    switch (actionEvent) {
+      case 'open modal dialog create':
+        this.showCreateModal();
+        break;
+      case 'open modal dialog edit':
+        this.showEditModalDialog(action.data);
+        break;
     }
   }
 
   private showCreateModal() {
+
+    this.idInput = '';
+    this.nameInput = '';
+    this.positionInput = '';
+    this.officeInput = '';
+    this.ageInput = '';
+    this.startDateInput = '';
+    this.sallaryInput = '';
+
     console.log('open create dialog');
     this.modalTitle = 'Create new user';
     $('#modal').modal('show');
   }
 
-  private showEditModalDialog(action: Action) {
+  private showEditModalDialog(user: User) {
     console.log('open edit dialog');
-    let user: User = action.data;
     this.modalTitle = `Edit user ${user.name}`;
 
     this.idInput = user.id.toString();

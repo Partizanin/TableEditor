@@ -13,6 +13,7 @@ export class ControllPannaleComponent implements OnInit {
   searchValue: string;
 
   constructor(private service: AppService) {
+
   }
 
 
@@ -31,7 +32,10 @@ export class ControllPannaleComponent implements OnInit {
     this.prewiousSelectedWalue = this.selectedValue;
   }
 
-  changeInput() {
-    this.service.changeSearchValue(this.searchValue)
+  changeInput(event) {
+    let action = new Action();
+    action.actionEvent = 'new search value';
+    action.data = event;
+    this.service.changeSearchValue(action)
   }
 }

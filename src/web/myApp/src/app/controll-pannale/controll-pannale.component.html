@@ -16,14 +16,14 @@
       <i class="fa fa-user-plus" aria-hidden="true"></i> Add User
     </button>
     <div class="item2">
-      <mat-form-field>
-        <!--      <label id="searchLabel"> <p>Search:</p></label>  --><input id="searchInput" matInput
-                                                                             (ngModelChange)="changeInput()"
-                                                                             [(ngModel)]="searchValue"
-                                                                             placeholder="searchQuery">
-      </mat-form-field>
-      <!--<label id="searchLabel"><p>Search:</p></label><input id="searchInput" (ngModelChange)="changeInput()"-->
-      <!--[(ngModel)]="searchValue" type="text" placeholder="">-->
+      <!--<mat-form-field>-->
+      <!--&lt;!&ndash;      <label id="searchLabel"> <p>Search:</p></label>  &ndash;&gt;<input id="searchInput" matInput-->
+      <!--(ngModelChange)="changeInput()"-->
+      <!--[(ngModel)]="searchValue"-->
+      <!--placeholder="searchQuery">-->
+      <!--</mat-form-field>-->
+      <label id="searchLabel"><p>Search:</p></label><input id="searchInput" (ngModelChange)="changeInput($event)"
+                                                           [(ngModel)]="searchValue" type="text" placeholder="">
     </div>
   </div>
 </div>

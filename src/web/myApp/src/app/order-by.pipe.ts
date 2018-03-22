@@ -7,8 +7,6 @@ import {User} from './shared/User';
 export class OrderByPipe implements PipeTransform {
 
   transform(users: any, sortedField: string, reversSort: boolean = false): any {
-    console.log(`orderBy ${sortedField}`);
-    console.log(`reversSort ${reversSort}`);
     let sortedUser = users.sort((user1: User, user2: User) => {
 
       if (reversSort) {

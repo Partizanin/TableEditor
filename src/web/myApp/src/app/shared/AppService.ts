@@ -3,8 +3,9 @@ import {User} from './User';
 
 @Injectable()
 export class AppService {
-  actionEvent: EventEmitter<any> = new EventEmitter();
-  searchValueChange: EventEmitter<string> = new EventEmitter();
+  controlPannelActionEvent: EventEmitter<any> = new EventEmitter();
+  modalDialogActionEvent: EventEmitter<any> = new EventEmitter();
+  searchValueChange: EventEmitter<any> = new EventEmitter();
   users: User[] = [];
 
 
@@ -21,13 +22,13 @@ export class AppService {
 
   }
 
-  changeSearchValue(searchValue: string) {
-    this.searchValueChange.emit(searchValue);
+  changeSearchValue(action: Action) {
+    this.searchValueChange.emit(action);
   }
 
 
   showModal(actyion: Action) {
-    this.actionEvent.emit(actyion);
+    this.controlPannelActionEvent.emit(actyion);
   };
 
 }
