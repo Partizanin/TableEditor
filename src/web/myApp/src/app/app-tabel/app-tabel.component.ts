@@ -20,6 +20,10 @@ export class AppTabelComponent implements OnInit {
     this.service.searchValueChange.subscribe((action: Action) => {
       this.controlPannelActionListener(action);
     });
+
+    this.service.modalDialogActionEvent.subscribe((action: Action) => {
+      this.modalDialogActionListener(action);
+    });
   }
 
   private controlPannelActionListener(action: Action) {
@@ -62,5 +66,28 @@ export class AppTabelComponent implements OnInit {
   getSortIcon(columnName: string) {
     columnName = columnName.toLocaleLowerCase();
     return this.orderByField === columnName ? this.sortedIconClass : this.defaultIconClass;
+  }
+
+  private modalDialogActionListener(action: Action) {
+    let actionEvent = action.actionEvent;
+
+    switch (actionEvent) {
+      case 'create':
+        this.createNewUser(action.data);
+        break;
+      case 'edit':
+        this.editUser(action.data);
+        break;
+    }
+  }
+
+  private editUser(user: User) {
+    let findedUser = this.users.find(arrayUser => arrayUser.id == user.id);
+    let index = this.users.indexOf(findedUser);
+    this.users[index] = user;
+  }
+
+  private createNewUser(user: User) {
+    this.users.push(user);
   }
 }

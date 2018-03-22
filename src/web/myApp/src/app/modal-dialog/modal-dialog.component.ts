@@ -10,6 +10,7 @@ declare var $: any;
   styleUrls: ['./modal-dialog.component.css']
 })
 export class ModalDialogComponent implements OnInit {
+  readOnly = false;
   display = 'none';
   modalTitle: string;
   idInput: string;
@@ -31,12 +32,22 @@ export class ModalDialogComponent implements OnInit {
   }
 
   successModalButtonClick() {
-    if (this.modalTitle === 'Create new user') {
-      console.log('addUser');
+    let action = new Action();
 
+    let user = new User(
+      parseInt(this.idInput), this.nameInput, this.positionInput, this.officeInput,
+      parseInt(this.ageInput), this.startDateInput, this.sallaryInput);
+
+
+    if (this.modalTitle === 'Create new user') {
+      action.actionEvent = 'create';
+      action.data = user;
     } else {
-      console.log('edit User');
+      action.actionEvent = 'edit';
+      action.data = user;
     }
+
+    this.service.modalDialogEvent(action);
 
     /*todo implement validation
     * hidlight invalid fields
@@ -61,6 +72,7 @@ export class ModalDialogComponent implements OnInit {
   }
 
   private showCreateModal() {
+    this.readOnly = false;
 
     this.idInput = '';
     this.nameInput = '';
@@ -70,13 +82,12 @@ export class ModalDialogComponent implements OnInit {
     this.startDateInput = '';
     this.sallaryInput = '';
 
-    console.log('open create dialog');
     this.modalTitle = 'Create new user';
     $('#modal').modal('show');
   }
 
   private showEditModalDialog(user: User) {
-    console.log('open edit dialog');
+    this.readOnly = true;
     this.modalTitle = `Edit user ${user.name}`;
 
     this.idInput = user.id.toString();

@@ -22,6 +22,12 @@ export class AppService {
 
   }
 
+  modalDialogEvent(action: Action) {
+    this.modalDialogActionEvent.emit(action);
+  }
+
+
+
   changeSearchValue(action: Action) {
     this.searchValueChange.emit(action);
   }
