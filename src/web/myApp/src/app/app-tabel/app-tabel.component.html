@@ -37,10 +37,15 @@
     <td>{{user.startDate}}</td>
     <td>{{user.salary}}</td>
     <td>
-      <!--todo:{{user.id}} add to id tag-->
-      <button id="todo" type="button" (click)="showEdithMoadal(user)"
-              class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+      <button id="todo" type="button" (click)="showEdithMoadal(user)" class="btn btn-primary">
+        <i class="fa fa-pencil" aria-hidden="true">
+
+        </i></button>
+
+      <button type="button" (click)="removeUser(user)" class="btn btn-danger">
+        <i class="fa fa-trash-o" aria-hidden="true">
+
+        </i></button>
     </td>
   </tr>
 

@@ -50,6 +50,14 @@ export class AppTabelComponent implements OnInit {
     this.service.showModal(action);
   }
 
+  removeUser(user: User) {
+    let findedUser = this.users.find(arrayUser => arrayUser.id == user.id);
+    let index = this.users.indexOf(findedUser);
+    if (index > -1) {
+      this.users.splice(index, 1);
+    }
+  }
+
   sortClick(event) {
     let target = event.target || event.srcElement || event.currentTarget;
     this.orderByField = target.innerHTML.toLocaleLowerCase();

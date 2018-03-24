@@ -65,10 +65,14 @@ export class OrderByPipe implements PipeTransform {
 
       let result = 0;
 
-      if (sortedField !== 'salary') {
+      if (sortedField == 'id') {
+        result = user1.id - user2.id;
+
+      } else if (sortedField !== 'salary') {
 
         result = user1SortFiled.localeCompare(user2SortFiled);
-      } else {//symbol '+' convert srtring to number
+
+      } else {//salary field
         result = parseFloat(user1SortFiled) - parseFloat(user2SortFiled);
       }
 
