@@ -5,24 +5,7 @@
 
 <app-tabel></app-tabel>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li ng-class="currentPage===1 ? 'page-item disabled':'page-item'">
-      <a ng-click="setPage(1)" class="page-link" href="#">First</a></li>
-
-    <li ng-class="currentPage===1 ? 'page-item disabled':'page-item'">
-      <a ng-click="setPage(currentPage-1)" class="page-link" href="#">Previous</a></li>
-    <!--'page-item active'-->
-    <li ng-repeat="page in pages" class="'page-item'" ng-class="{'page-item active': currentPage === page}">
-      <a class="page-link" ng-click="setPage(page)" href="#">{{page}}</a></li>
-
-    <li ng-class="currentPage===totalPages ? 'page-item disabled':'page-item'">
-      <a ng-click="setPage(currentPage+1)" class="page-link" href="#">Next</a></li>
-
-    <li ng-class="currentPage===totalPages ? 'page-item disabled':'page-item'">
-      <a ng-click="setPage(totalPages)" class="page-link" href="#">Last</a></li>
-  </ul>
-</nav>
+<app-navigation></app-navigation>
 
 <!-- Modal adding-->
 <app-modal-dialog></app-modal-dialog>
