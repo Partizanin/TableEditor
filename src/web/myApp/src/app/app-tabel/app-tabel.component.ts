@@ -15,6 +15,7 @@ export class AppTabelComponent implements OnInit {
   defaultIconClass: string;
   sortedIconClass: string;
   searchValue: string;
+  searchColumn: string;
 
   constructor(private service: AppService) {
     this.service.searchValueChange.subscribe((action: Action) => {
@@ -30,7 +31,8 @@ export class AppTabelComponent implements OnInit {
     let actionEvent: string = action.actionEvent;
     switch (actionEvent) {
       case 'new search value':
-        this.searchValue = action.data;
+        this.searchValue = action.data.searchValue;
+        this.searchColumn = action.data.searchColumn;
         break;
     }
   }

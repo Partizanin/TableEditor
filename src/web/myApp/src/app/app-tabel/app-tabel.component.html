@@ -28,7 +28,7 @@
   </thead>
   <tbody>
   <!--<tr ng-repeat="user in filteredUser|filter:search|orderBy:orderByField:reverseSort">-->
-  <tr *ngFor="let user of users | filter:searchValue | orderBy:orderByField:reverseSort">
+  <tr *ngFor="let user of users | filter:searchValue:searchColumn | orderBy:orderByField:reverseSort">
     <td>{{user.id}}</td>
     <td>{{user.name}}</td>
     <td>{{user.position}}</td>
