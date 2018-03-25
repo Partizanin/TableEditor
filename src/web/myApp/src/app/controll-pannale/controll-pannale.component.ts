@@ -11,6 +11,7 @@ export class ControllPannaleComponent implements OnInit {
   selectedValue: string = '10';
   prewiousSelectedWalue = this.selectedValue;
   searchValue: string;
+  buttonTitle = 'All fields';
 
   constructor(private service: AppService) {
 
@@ -37,5 +38,9 @@ export class ControllPannaleComponent implements OnInit {
     action.actionEvent = 'new search value';
     action.data = event;
     this.service.changeSearchValue(action)
+  }
+
+  searchColumnSelect(event) {
+    this.buttonTitle = event.target.innerText;
   }
 }

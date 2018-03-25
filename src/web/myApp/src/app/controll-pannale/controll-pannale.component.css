@@ -61,3 +61,9 @@ p {
   right: 2px;
   top: 10px;
 }
+
+#dropDownButton {
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
