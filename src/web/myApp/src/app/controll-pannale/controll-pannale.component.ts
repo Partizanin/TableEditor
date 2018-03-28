@@ -11,7 +11,7 @@ export class ControllPannaleComponent implements OnInit {
   selectedValue: string = '10';
   prewiousSelectedWalue = this.selectedValue;
   searchValue: string;
-  searchByColumn = 'All fields';
+  searchByColumn = 'All columns';
 
   constructor(private service: AppService) {
 
@@ -29,6 +29,10 @@ export class ControllPannaleComponent implements OnInit {
   }
 
   selectedChange(event) {
+    let action = new Action();
+    action.actionEvent = 'new itemPerPage value';
+    action.data = event.target.value;
+    this.service.changeItemsPerPageValue(action);
     console.log(`changed from ${this.prewiousSelectedWalue} to ${event.target.value}`);
     this.prewiousSelectedWalue = this.selectedValue;
   }

@@ -25,6 +25,18 @@ export class AppTabelComponent implements OnInit {
     this.service.modalDialogActionEvent.subscribe((action: Action) => {
       this.modalDialogActionListener(action);
     });
+
+    this.service.navigationActionEvent.subscribe((action: Action) => {
+      this.navigationActionListener(action);
+    });
+  }
+
+  ngOnInit() {
+    this.sortedIconClass = 'fa fa-sort-amount-asc';
+    this.defaultIconClass = 'fa fa-exchange fa-rotate-90';
+    this.reverseSort = false;
+    this.orderByField = 'id';
+    this.users = this.service.filteredUsers;
   }
 
   private controlPannelActionListener(action: Action) {
@@ -37,12 +49,8 @@ export class AppTabelComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.sortedIconClass = 'fa fa-sort-amount-asc';
-    this.defaultIconClass = 'fa fa-exchange fa-rotate-90';
-    this.reverseSort = false;
-    this.orderByField = 'id';
-    this.users = this.service.users;
+  private navigationActionListener(action: Action) {
+    this.users = action.data;
   }
 
   showEdithMoadal(user: User) {

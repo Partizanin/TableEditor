@@ -9,11 +9,19 @@ export class AppService {
   searchValueChange: EventEmitter<any> = new EventEmitter();
   users: User[];
 
+  itemsPerPageChangeEvent: EventEmitter<any> = new EventEmitter<any>();
+  navigationActionEvent: EventEmitter<any> = new EventEmitter<any>();
+  filteredUsers: User[];
 
   constructor() {
+    this.filteredUsers = [];
     this.users = employees;
-
   }
+
+  changeItemsPerPageValue(action: Action) {
+    this.itemsPerPageChangeEvent.emit(action);
+  }
+
 
   modalDialogEvent(action: Action) {
     this.modalDialogActionEvent.emit(action);
@@ -25,10 +33,14 @@ export class AppService {
   }
 
 
-  showModal(actyion: Action) {
-    this.controlPannelActionEvent.emit(actyion);
-  };
+  showModal(action: Action) {
+    this.controlPannelActionEvent.emit(action);
+  }
 
+
+  updateUsers(action: Action) {
+    this.navigationActionEvent.emit(action);
+  }
 }
 
 export class Action {

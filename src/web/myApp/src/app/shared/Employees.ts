@@ -270,6 +270,4 @@ export const employees = [
     startDate: '01.06.2012',
     salary: '$115,000'
   },
-
-
 ];

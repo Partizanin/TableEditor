@@ -12,42 +12,33 @@ export class FilterPipe implements PipeTransform {
 
     return users.filter(function (user: User) {
 
-
       let expectedValue = '';
 
       switch (byColumn) {
         case 'All fields':
-          console.log('all fields');
           expectedValue = user.name + user.salary + user.startDate +
             user.age + user.position + user.office + user.id;
           break;
         case'Id':
           expectedValue = user.id.toString();
-          console.log('id');
           break;
         case'Name':
           expectedValue = user.name;
-          console.log('name');
           break;
         case'Position':
           expectedValue = user.position;
-          console.log('position');
           break;
         case'Office':
           expectedValue = user.office;
-          console.log('office');
           break;
         case'Age':
           expectedValue = user.age.toString();
-          console.log('age');
           break;
         case'Start Date':
           expectedValue = user.startDate;
-          console.log('start date');
           break;
         case'Salary':
           expectedValue = user.salary;
-          console.log('salary');
           break;
       }
 
