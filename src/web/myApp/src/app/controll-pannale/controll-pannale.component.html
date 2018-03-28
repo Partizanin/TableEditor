@@ -3,8 +3,8 @@
 
   <div class="d-flex flex-row">
     <div class="item"><p>Show</p></div>
-    <select (change)="selectedChange($event)" id="selectPane" title="" [(ngModel)]="selectedValue">
-      <option *ngFor="let value of selectValues" [value]="value">{{value}}</option>
+    <select (change)="selectedChange($event)" id="selectPane" title="" [(ngModel)]="selectedItemPerPage">
+      <option *ngFor="let value of itemsPerPage" [value]="value">{{value}}</option>
     </select>
     <div class="item">
       <p>users per page.</p>

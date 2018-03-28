@@ -24,7 +24,7 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.currentPage = 1;
-    this.itemsPerPage = 2;
+    this.itemsPerPage = 10;
     this.paginationLength = 6;
 
     this.pagination = new Paginatoin(
@@ -70,6 +70,7 @@ export class NavigationComponent implements OnInit {
       this.itemsPerPage = itemPerPage;
       this.setPage();
     } else {
+      this.currentPage = 1;
       this.itemsPerPage = itemPerPage;
       this.setPage();
     }

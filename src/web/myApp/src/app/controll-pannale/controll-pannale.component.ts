@@ -7,9 +7,9 @@ import {Action, AppService} from '../shared/AppService';
   styleUrls: ['./controll-pannale.component.css']
 })
 export class ControllPannaleComponent implements OnInit {
-  selectValues = ['10', '15', '20', 'all'];
-  selectedValue: string = '10';
-  prewiousSelectedWalue = this.selectedValue;
+  itemsPerPage = ['10', '15', '20', 'all'];
+  selectedItemPerPage: string = '10';
+  prewiousSelectedWalue = this.selectedItemPerPage;
   searchValue: string;
   searchByColumn = 'All columns';
 
@@ -32,7 +32,7 @@ export class ControllPannaleComponent implements OnInit {
     action.actionEvent = 'new itemPerPage value';
     action.data = event.target.value;
     this.service.changeItemsPerPageValue(action);
-    this.prewiousSelectedWalue = this.selectedValue;
+    this.prewiousSelectedWalue = this.selectedItemPerPage;
   }
 
   changeInput(event) {
@@ -49,7 +49,7 @@ export class ControllPannaleComponent implements OnInit {
       this.service.changeItemsPerPageValue(action);
     } else {
       action.actionEvent = 'new itemPerPage value';
-      action.data = 2;
+      action.data = this.selectedItemPerPage;
       this.service.changeItemsPerPageValue(action);
 
     }
