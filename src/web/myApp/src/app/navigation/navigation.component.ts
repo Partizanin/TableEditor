@@ -97,7 +97,7 @@ class Paginatoin {
 
   getPages(newPageNumber) {
     let result = this.pages;
-    if (this.itemsPerPage.toString() == 'all') this.paginationLength = 1;
+    if (this.itemsPerPage.toString() == 'all') return [1];
     if (this.totalPages < this.paginationLength) this.paginationLength = Math.ceil(this.totalPages / 2);
 
     const paginationCenter = this.pages[Math.ceil(this.paginationLength / 2)] - 1;
@@ -106,7 +106,7 @@ class Paginatoin {
 
 
     let startPageNumber: number = this.getStartPageNumber(newPageNumber, pageWayUp, paginationCenter);
-    let endPageNumber: number = this.getEndPageNumber(newPageNumber, pageWayUp, paginationCenter, startPageNumber);
+    let endPageNumber: number = startPageNumber + this.paginationLength - 1;
 
     if (endPageNumber && startPageNumber) {
       result = [];
@@ -120,18 +120,14 @@ class Paginatoin {
   }
 
   getUsers(currentPage: number, itemsPerPage: any): User[] {
+    this.itemsPerPage = itemsPerPage;
+
     if (itemsPerPage == 'all') return this.users;
-    else this.itemsPerPage = itemsPerPage;
 
     let begin: number = ((currentPage - 1) * parseInt(itemsPerPage)),
       end: number = begin + parseInt(itemsPerPage);
 
     return this.users.slice(begin, end);
-  }
-
-  private getEndPageNumber(newPageNumber, pageWayUp, paginationCenter, startPageNumber) {
-
-    return startPageNumber + this.paginationLength - 1;
   }
 
 

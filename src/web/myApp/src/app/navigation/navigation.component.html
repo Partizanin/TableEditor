@@ -13,11 +13,11 @@
       <a class="page-link" (click)="setPage(page)" href="#">{{page}}</a>
     </li>
 
-    <li class="page-item" [ngClass]="{' disabled':currentPage===totalPages}">
+    <li class="page-item" [ngClass]="{' disabled':currentPage===totalPages || pages.length < 2}">
       <a (click)="setPage(currentPage+1)" class="page-link" href="#">Next</a>
     </li>
 
-    <li class="page-item" [ngClass]="{' disabled':currentPage===totalPages}">
+    <li class="page-item" [ngClass]="{' disabled':currentPage===totalPages|| pages.length < 2}">
       <a (click)="setPage(totalPages)" class="page-link" href="#">Last</a>
     </li>
 

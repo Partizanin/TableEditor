@@ -14,7 +14,6 @@ export class ControllPannaleComponent implements OnInit {
   searchByColumn = 'All columns';
 
   constructor(private service: AppService) {
-
   }
 
 
@@ -33,7 +32,6 @@ export class ControllPannaleComponent implements OnInit {
     action.actionEvent = 'new itemPerPage value';
     action.data = event.target.value;
     this.service.changeItemsPerPageValue(action);
-    console.log(`changed from ${this.prewiousSelectedWalue} to ${event.target.value}`);
     this.prewiousSelectedWalue = this.selectedValue;
   }
 
@@ -44,7 +42,17 @@ export class ControllPannaleComponent implements OnInit {
       searchValue: event,
       searchColumn: this.searchByColumn
     };
-    this.service.changeSearchValue(action)
+    this.service.changeSearchValue(action);
+    if (event.length > 0) {
+      action.actionEvent = 'new itemPerPage value';
+      action.data = 'all';
+      this.service.changeItemsPerPageValue(action);
+    } else {
+      action.actionEvent = 'new itemPerPage value';
+      action.data = 2;
+      this.service.changeItemsPerPageValue(action);
+
+    }
   }
 
   searchColumnSelect(event) {
