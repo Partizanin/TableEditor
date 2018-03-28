@@ -142,6 +142,8 @@ class Paginatoin {
 
         if (result <= this.totalPages) {
           return result;
+        } else {
+          return this.totalPages;
         }
       }
     } else {
@@ -166,21 +168,21 @@ class Paginatoin {
     let result = 0;
     if (newPageNumber < 1 || newPageNumber > this.totalPages) return 0;
     if (newPageNumber === 1) return newPageNumber;
-    if (newPageNumber === this.totalPages) return newPageNumber - this.paginationLength + 1;
+    if (newPageNumber >= this.totalPages) return newPageNumber - this.paginationLength + 1;
 
     if (pageWayUp) {
 
       if (newPageNumber > paginationCenter) {
         const needAddNumbers = newPageNumber - paginationCenter;
 
-        result = this.pages[this.pages.length - 1] + needAddNumbers;
+        result = this.pages[0] + needAddNumbers;
 
-        if (result <= this.totalPages) {
+        if (result > this.totalPages - this.paginationLength) {
 
-          return result - this.paginationLength + 1;
+          return this.totalPages - this.paginationLength;
         }
       }
-      return null;
+      return result;
     } else {
 
       if (newPageNumber < paginationCenter) {
@@ -192,6 +194,8 @@ class Paginatoin {
 
           return result;
         } else {
+
+          if (result == 0) return 1;
           return null;
         }
       } else {
