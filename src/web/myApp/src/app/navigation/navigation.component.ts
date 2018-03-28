@@ -130,39 +130,10 @@ class Paginatoin {
   }
 
   private getEndPageNumber(newPageNumber, pageWayUp, paginationCenter, startPageNumber) {
-    if (newPageNumber < 1 || newPageNumber > this.totalPages) return 0;
-    if (newPageNumber === 1) return newPageNumber + this.paginationLength - 1;
-    if (newPageNumber === this.totalPages) return newPageNumber;
 
-    if (pageWayUp) {
-      if (newPageNumber > paginationCenter) {
-        const needAddNumbers = newPageNumber - paginationCenter;
-
-        const result = this.pages[this.pages.length - 1] + needAddNumbers;
-
-        if (result <= this.totalPages) {
-          return result;
-        } else {
-          return this.totalPages;
-        }
-      }
-    } else {
-      if (newPageNumber < paginationCenter) {
-        const needRemvoeNumbers = newPageNumber - paginationCenter;
-
-        let result: number;
-        result = this.pages[this.pages.length - 1] + needRemvoeNumbers;
-
-        if (result <= this.totalPages) return result;
-
-        return startPageNumber + this.paginationLength - 1
-
-      } else {
-        return null;
-      }
-    }
-
+    return startPageNumber + this.paginationLength - 1;
   }
+
 
   private getStartPageNumber(newPageNumber, pageWayUp, paginationCenter) {
     let result = 0;
@@ -177,9 +148,9 @@ class Paginatoin {
 
         result = this.pages[0] + needAddNumbers;
 
-        if (result > this.totalPages - this.paginationLength) {
+        if (result > this.totalPages - this.paginationLength + 1) {
 
-          return this.totalPages - this.paginationLength;
+          return this.totalPages - this.paginationLength + 1;
         }
       }
       return result;
