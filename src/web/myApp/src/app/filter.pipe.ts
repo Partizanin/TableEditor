@@ -6,20 +6,7 @@ import {User} from './shared/User';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(users: any, searchValue: any, byColumn: any): any {
-    console.log(`filter event  ${searchValue} ${byColumn}`);
-
-    if (searchValue == undefined || searchValue.length == 0) return users;
-
-    return users.filter(user => {
-      return this.getFilterredUsers(byColumn, user, searchValue);
-    });
-    // console.log(`filteredUsers ${filteredUsers.length}`);
-    // return filteredUsers;
-
-  }
-
-  private getFilterredUsers(byColumn: any, user: User, searchValue: any) {
+  private static getFilterredUsers(byColumn: any, user: User, searchValue: any) {
     let expectedValue = '';
 
     switch (byColumn) {
@@ -51,5 +38,18 @@ export class FilterPipe implements PipeTransform {
     }
 
     return expectedValue.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
+  }
+
+  transform(users: any, searchValue: any, byColumn: any): any {
+    console.log(`filter event  ${searchValue} ${byColumn}`);
+
+    if (searchValue == undefined || searchValue.length == 0) return users;
+
+    return users.filter(user => {
+      return FilterPipe.getFilterredUsers(byColumn, user, searchValue);
+    });
+    // console.log(`filteredUsers ${filteredUsers.length}`);
+    // return filteredUsers;
+
   }
 }

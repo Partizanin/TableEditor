@@ -70,9 +70,10 @@ export class NavigationComponent implements OnInit {
       this.itemsPerPage = itemPerPage;
       this.setPage();
     } else {
-      this.currentPage = 1;
       this.itemsPerPage = itemPerPage;
-      this.setPage();
+      this.pagination.setItemPerPage(itemPerPage);
+      this.setPage(1);
+      this.totalPages = this.pagination.totalPages;
     }
   }
 }
@@ -91,6 +92,13 @@ class Paginatoin {
     this.paginationLength = paginationLength;
     this.users = users;
     this.currentPage = currentPage;
+    this.totalPages = Math.ceil(this.users.length / this.itemsPerPage);
+    this.pages = this.initPages();
+  }
+
+
+  setItemPerPage(itemPerPage: number) {
+    this.itemsPerPage = itemPerPage;
     this.totalPages = Math.ceil(this.users.length / this.itemsPerPage);
     this.pages = this.initPages();
   }
@@ -178,13 +186,14 @@ class Paginatoin {
     const result = [];
 
     if (this.totalPages < this.paginationLength) {
-      this.paginationLength = Math.ceil(this.totalPages / 2);
+      this.paginationLength = this.totalPages;
     }
 
     for (let pageNumber = this.currentPage; pageNumber < this.paginationLength + 1; pageNumber++) {
       result.push(pageNumber);
     }
 
+    this.pages = result;
     return result;
   }
 }
