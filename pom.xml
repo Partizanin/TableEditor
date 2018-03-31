@@ -31,9 +31,9 @@
         <!--<spring.version>4.0.5.RELEASE</spring.version>-->
         <!--<mysql.connector.version>5.1.21</mysql.connector.version>-->
         <!--<hibernate.version>5.2.10.Final</hibernate.version>-->
-        <!--<kotlin.version>1.2.30</kotlin.version>-->
+        <kotlin.version>1.2.30</kotlin.version>
         <!--<json.version>20090211</json.version>-->
-        <!--<mysqlConnector.version>5.1.6</mysqlConnector.version>-->
+        <mysqlConnector.version>5.1.6</mysqlConnector.version>
         <!--<javasis.version>3.12.1.GA</javasis.version>-->
         <!--<commonPoll.version>1.6</commonPoll.version>-->
         <!--<javax.version>3.0.1</javax.version>-->
@@ -46,34 +46,34 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
             <!--<plugin>-->
-            <!--<groupId>org.jetbrains.kotlin</groupId>-->
-            <!--<artifactId>kotlin-maven-plugin</artifactId>-->
-            <!--<version>${kotlin.version}</version>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<id>compile</id>-->
-            <!--<phase>compile</phase>-->
-            <!--<goals>-->
-            <!--<goal>compile</goal>-->
-            <!--</goals>-->
-            <!--</execution>-->
-            <!--<execution>-->
-            <!--<id>test-compile</id>-->
-            <!--<phase>test-compile</phase>-->
-            <!--<goals>-->
-            <!--<goal>test-compile</goal>-->
-            <!--</goals>-->
-            <!--</execution>-->
-            <!--</executions>-->
-            <!--<configuration>-->
-            <!--<jvmTarget>1.8</jvmTarget>-->
-            <!--</configuration>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
             <!--</plugin>-->
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jvmTarget>1.8</jvmTarget>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -103,40 +103,40 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-web</artifactId>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-test</artifactId>-->
+        <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <!--<dependency>-->
-        <!--<groupId>mysql</groupId>-->
-        <!--<artifactId>mysql-connector-java</artifactId>-->
-        <!--<version>${mysqlConnector.version}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysqlConnector.version}</version>
+        </dependency>
 
         <!--<dependency>-->
         <!--<groupId>org.json</groupId>-->
         <!--<artifactId>json</artifactId>-->
         <!--<version>${json.version}</version>-->
         <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.jetbrains.kotlin</groupId>-->
-        <!--<artifactId>kotlin-stdlib-jdk8</artifactId>-->
-        <!--<version>${kotlin.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.jetbrains.kotlin</groupId>-->
-        <!--<artifactId>kotlin-test-junit</artifactId>-->
-        <!--<version>${kotlin.version}</version>-->
-        <!--<scope>test</scope>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test-junit</artifactId>
+            <version>${kotlin.version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- Servlet dependency -->
         <!--<dependency>-->
@@ -145,6 +145,11 @@
         <!--<version>${javax.version}</version>-->
         <!--<scope>provided</scope>-->
         <!--</dependency>-->
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
     </dependencies>
 
 
