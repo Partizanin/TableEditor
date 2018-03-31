@@ -52,6 +52,7 @@ export class OrderByPipe implements PipeTransform {
         }
 
         case 'startdate': {
+          /*todo: bag fix with date sorting*/
           user1SortFiled = user1.startDate;
           user2SortFiled = user2.startDate;
           break
