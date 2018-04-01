@@ -10,6 +10,7 @@ import {AppTabelComponent} from './app-tabel/app-tabel.component';
 import {FilterPipe} from './filter.pipe';
 import {OrderByPipe} from './order-by.pipe';
 import {NavigationComponent} from './navigation/navigation.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {NavigationComponent} from './navigation/navigation.component';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

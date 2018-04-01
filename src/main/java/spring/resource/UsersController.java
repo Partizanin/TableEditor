@@ -1,10 +1,7 @@
 package spring.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import spring.model.User;
 import spring.repository.UsersRepository;
 
@@ -17,8 +14,28 @@ public class UsersController {
     @Autowired
     UsersRepository usersRepository;
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("id") int id) {
+        System.out.println("Delet user " + id);
+        usersRepository.deleteById(id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public @ResponseBody
+    User update(@PathVariable("id") int id, @RequestBody User user) {
+        System.out.println("Update user " + id);
+        return usersRepository.saveAndFlush(user);
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public void create(@RequestBody User user) {
+        System.out.println("Create user " + user.getId());
+        usersRepository.saveAndFlush(user);
+    }
+
+
     @GetMapping("/all")
-    public List<User> getAll() {
+    public List<User> read() {
         return usersRepository.findAll();
     }
 
@@ -29,6 +46,8 @@ public class UsersController {
 
     @GetMapping("/id/{id}")
     public User getUser(@PathVariable("id") final int id) {
+        System.out.println("get user by id: " + id);
+
         return usersRepository.findById(id);
     }
 }
