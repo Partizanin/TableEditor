@@ -1,9 +1,10 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {User} from './User';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class UserSerwice {
+export class UserService {
 
   constructor(private http: HttpClient) {
   }
@@ -21,9 +22,7 @@ export class UserSerwice {
 
   read() {
     console.log('read Users');
-    this.http.get('/api/all').subscribe(data => {
-      console.log(data);
-    });
+    return this.http.get('/api/all') as Observable<User[]>;
   }
 
   create(user: User) {

@@ -17,6 +17,10 @@ export class NavigationComponent implements OnInit {
   pages: number[];
 
   constructor(private service: AppService) {
+    this.service.userInit.subscribe((users: User[]) => {
+      this.users = users;
+      this.ngOnInit();
+    });
     this.service.itemsPerPageChangeEvent.subscribe((action: Action) => {
       this.controlPannelActionListener(action);
     });
