@@ -64,7 +64,7 @@ export class AppTabelComponent implements OnInit {
     let findedUser = this.users.find(arrayUser => arrayUser.id == user.id);
     let index = this.users.indexOf(findedUser);
     if (index > -1) {
-      this.users = this.service.removeUser(user);
+      this.service.removeUser(user);
 
     }
   }

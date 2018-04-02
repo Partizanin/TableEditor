@@ -13,6 +13,7 @@ export class AppService {
   navigationActionEvent: EventEmitter<any> = new EventEmitter<any>();
   filteredUsers: User[];
   userInit: EventEmitter<any> = new EventEmitter<any>();
+  userRemove: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private userService: UserService) {
     this.filteredUsers = [];
@@ -49,13 +50,9 @@ export class AppService {
   }
 
   removeUser(user: User) {
-    /*todo bug fix
-    * when remove user, you jump on the first page with all user rows but not with 10 rows
-    * */
     let index = this.users.indexOf(user);
     this.users.splice(index, 1);
-    this.userInit.emit(this.users);
-    return this.users;
+    this.userRemove.emit(this.users);
   }
 }
 
