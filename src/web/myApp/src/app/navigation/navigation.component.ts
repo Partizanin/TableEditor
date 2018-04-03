@@ -53,6 +53,8 @@ export class NavigationComponent implements OnInit {
     this.users = this.pagination.getUsers(this.currentPage, this.itemsPerPage);
     this.currentPage = this.pagination.getCurrentPage();
     this.pages = this.pagination.getPages();
+    this.totalPages = this.pagination.getTotalPage();
+    this.paginationLength = this.pagination.getPaginationLength();
 
     let action = new Action();
 

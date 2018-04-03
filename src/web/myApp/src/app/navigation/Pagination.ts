@@ -24,13 +24,13 @@ export class Paginatoin {
     this.pages = this.initPages();
   }
 
-  getUsers(currentPage: number, itemsPerPage: any): User[] {
+  getUsers(newPageNumber: number, itemsPerPage: any): User[] {
     this.itemsPerPage = itemsPerPage;
-    this.pages = this.updatePages(this.currentPage);
+    this.pages = this.updatePages(newPageNumber);
 
     if (itemsPerPage == 'all') return this.users;
 
-    let begin: number = ((currentPage - 1) * parseInt(itemsPerPage)),
+    let begin: number = ((this.currentPage - 1) * parseInt(itemsPerPage)),
       end: number = begin + parseInt(itemsPerPage);
 
     return this.users.slice(begin, end);
@@ -44,42 +44,6 @@ export class Paginatoin {
 
   getCurrentPage() {
     return this.currentPage;
-  }
-
-  getPages() {
-    return this.pages;
-  }
-
-  private updatePages(newPageNumber) {
-    let result = this.pages;
-    if (this.itemsPerPage.toString() == 'all') return [1];
-    this.totalPages = Math.ceil(this.users.length / this.itemsPerPage);
-    if (this.totalPages < this.paginationLength) this.paginationLength = Math.ceil(this.totalPages / 2);
-
-    const paginationCenter = this.pages[Math.ceil(this.paginationLength / 2)] - 1;
-    const pageWayUp = newPageNumber > this.currentPage;
-    this.currentPage = newPageNumber;
-
-
-    let startPageNumber: number = this.getStartPageNumber(newPageNumber, pageWayUp, paginationCenter);
-    let endPageNumber: number = startPageNumber + this.paginationLength - 1;
-
-    if (endPageNumber && startPageNumber) {
-      result = [];
-      for (let pageNumber = startPageNumber; pageNumber < endPageNumber + 1; pageNumber++) {
-        result.push(pageNumber);
-      }
-
-      this.pages = result;
-    }
-
-
-    let lastPageNumber = this.pages[this.pages.length - 1];
-    if (this.currentPage > lastPageNumber) {
-      this.currentPage = lastPageNumber;
-    }
-
-    return result;
   }
 
   private getStartPageNumber(newPageNumber, pageWayUp, paginationCenter) {
@@ -137,6 +101,54 @@ export class Paginatoin {
     }
 
     this.pages = result;
+    return result;
+  }
+
+  getPages() {
+    return this.pages;
+  }
+
+  getTotalPage() {
+    return this.totalPages;
+  }
+
+  getPaginationLength() {
+    return this.paginationLength;
+  }
+
+  private updatePages(newPageNumber) {
+    let result = this.pages;
+    if (this.itemsPerPage.toString() == 'all') return [1];
+    this.totalPages = Math.ceil(this.users.length / this.itemsPerPage);
+    if (this.totalPages < this.paginationLength) this.paginationLength = Math.ceil(this.totalPages / 2);
+
+    const paginationCenter = this.pages[Math.ceil(this.paginationLength / 2)] - 1;
+    const pageWayUp = newPageNumber > this.currentPage;
+    if (newPageNumber > this.paginationLength) {
+      this.currentPage = this.paginationLength;
+    } else {
+      this.currentPage = newPageNumber;
+    }
+
+
+    let startPageNumber: number = this.getStartPageNumber(newPageNumber, pageWayUp, paginationCenter);
+    let endPageNumber: number = startPageNumber + this.paginationLength - 1;
+
+    if (endPageNumber && startPageNumber) {
+      result = [];
+      for (let pageNumber = startPageNumber; pageNumber < endPageNumber + 1; pageNumber++) {
+        result.push(pageNumber);
+      }
+
+      this.pages = result;
+    }
+
+
+    let lastPageNumber = this.pages[this.pages.length - 1];
+    if (this.currentPage > lastPageNumber) {
+      this.currentPage = lastPageNumber;
+    }
+
     return result;
   }
 }
