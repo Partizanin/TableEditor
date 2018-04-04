@@ -18,6 +18,7 @@ export class AppService {
   constructor(private userService: UserService) {
     this.filteredUsers = [];
     this.users = [];
+
     this.userService.read().subscribe((users) => {
         this.users = users;
         this.userInit.emit(this.users);
@@ -32,7 +33,15 @@ export class AppService {
 
 
   modalDialogEvent(action: Action) {
-    this.modalDialogActionEvent.emit(action);
+    let actionEvent = action.actionEvent;
+    let user = action.data;
+
+    if (actionEvent === 'edit') {
+
+      this.userService.update(user);
+    } else {
+      this.userService.create(user);
+    }
   }
 
 

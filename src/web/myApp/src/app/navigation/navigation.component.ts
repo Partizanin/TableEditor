@@ -22,9 +22,6 @@ export class NavigationComponent implements OnInit {
       this.controlPannelActionListener(action);
     });
     this.service.userRemove.subscribe((users: User[]) => {
-      /*todo bugfix
-      * when remove user you shut to first page
-      * */
       this.pagination.setUsers(users);
       this.setPage();
     });
@@ -88,6 +85,10 @@ export class NavigationComponent implements OnInit {
   }
 
   private setItemPerPage(itemPerPage: any) {
+    /*todo fix bug with pagination
+    * when change user to all and return value to 10
+    * pagination lenth not normally and pagination button not working
+    * */
     this.itemsPerPage = itemPerPage;
     if (this.itemsPerPage == 'all') {
       this.currentPage = 1;
