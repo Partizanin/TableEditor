@@ -5,7 +5,6 @@ import {UserService} from './user-serwice.service';
 @Injectable()
 export class AppService {
   controlPannelActionEvent: EventEmitter<any> = new EventEmitter();
-  modalDialogActionEvent: EventEmitter<any> = new EventEmitter();
   searchValueChange: EventEmitter<any> = new EventEmitter();
   users: User[];
 
@@ -39,9 +38,18 @@ export class AppService {
     if (actionEvent === 'edit') {
 
       this.userService.update(user);
+      this.edithUserByID(user);
     } else {
       this.userService.create(user);
+      this.users.push(user);
     }
+  }
+
+  removeUser(user: User) {
+    let index = this.users.indexOf(user);
+    this.users.splice(index, 1);
+    this.userRemove.emit(this.users);
+    this.userService.delete(user);
   }
 
 
@@ -58,10 +66,11 @@ export class AppService {
     this.navigationActionEvent.emit(action);
   }
 
-  removeUser(user: User) {
-    let index = this.users.indexOf(user);
-    this.users.splice(index, 1);
-    this.userRemove.emit(this.users);
+  private edithUserByID(user: User) {
+    let findedIndex = this.users.findIndex(findedUser => findedUser.id == user.id);
+    console.log(this.users[findedIndex]);
+    this.users[findedIndex] = user;
+    console.log(this.users[findedIndex]);
   }
 }
 

@@ -20,11 +20,12 @@ public class UsersController {
         usersRepository.deleteById(id);
     }
 
+
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public @ResponseBody
-    User update(@PathVariable("id") int id, @RequestBody User user) {
+//    public @ResponseBody
+    public void update(@PathVariable("id") int id, @RequestBody User user) {
         System.out.println("Update user " + id);
-        return usersRepository.saveAndFlush(user);
+        usersRepository.saveAndFlush(user);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -33,8 +34,8 @@ public class UsersController {
         usersRepository.saveAndFlush(user);
     }
 
-
-    @GetMapping("/all")
+    //    @GetMapping("/all")
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<User> read() {
         return usersRepository.findAll();
     }

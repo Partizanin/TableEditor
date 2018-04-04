@@ -9,18 +9,23 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  /*todo connect serwice with apllication*/
   delete(user: User) {
     console.log('delete User');
-    this.http.delete('/api/' + user.id);
+    this.http.delete('/api/' + user.id).subscribe(data => {
+    }, error => {
+      console.error(error)
+    });
   }
 
   update(user: User) {
-    /*todo bugfix dont send put reques*/
+
     const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json',})};
     console.log('update User');
     let url = '/api/' + user.id;
-    this.http.put(url, user, httpOptions).subscribe(data => console.log(data));
+    this.http.put(url, user, httpOptions).subscribe(data => {
+    }, error => {
+      console.error(error)
+    });
   }
 
   read() {
@@ -30,7 +35,10 @@ export class UserService {
   }
 
   create(user: User) {
-    this.http.post('/api/create/', user);
+    this.http.post('/api/create', user).subscribe(data => {
+    }, error => {
+      console.error(error)
+    });
     console.log('create User');
   }
 }
