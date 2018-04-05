@@ -4,7 +4,6 @@
  
  Prewiew image of project. 
  
- Open in full screen [Prewiew](https://i.imgur.com/0fxBQHa.png)
 ![Prewiew image of Project](https://i.imgur.com/0fxBQHa.png)
 
 ### How to try ?
