@@ -4,7 +4,7 @@
  
  Prewiew image of project. 
  
-![Prewiew image of Project](https://i.imgur.com/0fxBQHa.png)
+![Prewiew image of Project](https://i.imgur.com/HdNEamd.png)
 
 ### How to try ?
 For run app yourself you must have a MySQL data base, 
