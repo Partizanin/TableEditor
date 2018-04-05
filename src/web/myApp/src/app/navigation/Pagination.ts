@@ -28,8 +28,10 @@ export class Paginatoin {
     this.itemsPerPage = itemsPerPage;
     this.pages = this.updatePages(newPageNumber);
 
-    if (itemsPerPage == 'all') return this.users;
-
+    if (itemsPerPage == 'all') {
+      this.currentPage = 1;
+      return this.users;
+    }
     let begin: number = ((this.currentPage - 1) * parseInt(itemsPerPage)),
       end: number = begin + parseInt(itemsPerPage);
 

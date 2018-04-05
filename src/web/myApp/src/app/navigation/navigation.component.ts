@@ -85,15 +85,11 @@ export class NavigationComponent implements OnInit {
   }
 
   private setItemPerPage(itemPerPage: any) {
-    /*todo fix bug with pagination
-    * when change user to all and return value to 10
-    * pagination lenth not normally and pagination button not working
-    * */
     this.itemsPerPage = itemPerPage;
     if (this.itemsPerPage == 'all') {
       this.currentPage = 1;
       this.itemsPerPage = itemPerPage;
-      this.setPage();
+      this.setPage(1);
     } else {
       this.itemsPerPage = itemPerPage;
       this.pagination.setItemPerPage(itemPerPage);
