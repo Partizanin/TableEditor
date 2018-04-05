@@ -5,7 +5,7 @@
   "scripts": {
     "myTest": "mocha -r ts-node/register src/**/*.test.ts",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy-conf.json",
     "build": "ng build --prod",
     "postbuild": "npm run deploy",
     "predeploy": "rimraf ../../main/resources/static && mkdirp ../../main/resources/static",

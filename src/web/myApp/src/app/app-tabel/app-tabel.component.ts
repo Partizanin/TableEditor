@@ -8,6 +8,7 @@ import {User} from '../shared/User';
   styleUrls: ['./app-tabel.component.css']
 
 })
+
 export class AppTabelComponent implements OnInit {
   users: User[];
   orderByField: string;
@@ -20,10 +21,6 @@ export class AppTabelComponent implements OnInit {
   constructor(private service: AppService) {
     this.service.searchValueChange.subscribe((action: Action) => {
       this.controlPannelActionListener(action);
-    });
-
-    this.service.modalDialogActionEvent.subscribe((action: Action) => {
-      this.modalDialogActionListener(action);
     });
 
     this.service.navigationActionEvent.subscribe((action: Action) => {
@@ -64,7 +61,8 @@ export class AppTabelComponent implements OnInit {
     let findedUser = this.users.find(arrayUser => arrayUser.id == user.id);
     let index = this.users.indexOf(findedUser);
     if (index > -1) {
-      this.users.splice(index, 1);
+      this.service.removeUser(user);
+
     }
   }
 
@@ -86,26 +84,4 @@ export class AppTabelComponent implements OnInit {
     return this.orderByField === columnName ? this.sortedIconClass : this.defaultIconClass;
   }
 
-  private modalDialogActionListener(action: Action) {
-    let actionEvent = action.actionEvent;
-
-    switch (actionEvent) {
-      case 'create':
-        this.createNewUser(action.data);
-        break;
-      case 'edit':
-        this.editUser(action.data);
-        break;
-    }
-  }
-
-  private editUser(user: User) {
-    let findedUser = this.users.find(arrayUser => arrayUser.id == user.id);
-    let index = this.users.indexOf(findedUser);
-    this.users[index] = user;
-  }
-
-  private createNewUser(user: User) {
-    this.users.push(user);
-  }
 }
