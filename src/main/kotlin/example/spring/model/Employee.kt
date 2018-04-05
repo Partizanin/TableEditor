@@ -1,4 +1,4 @@
-package model
+package example.spring.model
 
 import javax.persistence.Entity
 import javax.persistence.Id

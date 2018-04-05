@@ -71,6 +71,7 @@ export class AppService {
     console.log(this.users[findedIndex]);
     this.users[findedIndex] = user;
     console.log(this.users[findedIndex]);
+    /*todo: send action to navigation component to repaint page*/
   }
 }
 

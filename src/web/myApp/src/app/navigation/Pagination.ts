@@ -48,6 +48,18 @@ export class Paginatoin {
     return this.currentPage;
   }
 
+  getPages() {
+    return this.pages;
+  }
+
+  getTotalPage() {
+    return this.totalPages;
+  }
+
+  getPaginationLength() {
+    return this.paginationLength;
+  }
+
   private getStartPageNumber(newPageNumber, pageWayUp, paginationCenter) {
     let result = 0;
     if (newPageNumber < 1 || newPageNumber > this.totalPages) return 0;
@@ -104,18 +116,6 @@ export class Paginatoin {
 
     this.pages = result;
     return result;
-  }
-
-  getPages() {
-    return this.pages;
-  }
-
-  getTotalPage() {
-    return this.totalPages;
-  }
-
-  getPaginationLength() {
-    return this.paginationLength;
   }
 
   private updatePages(newPageNumber) {

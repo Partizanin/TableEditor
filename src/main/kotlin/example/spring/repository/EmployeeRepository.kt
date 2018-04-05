@@ -1,7 +1,7 @@
-package repository
+package example.spring.repository
 
-import model.Employee
+import example.spring.model.Employee
 import org.springframework.data.jpa.repository.JpaRepository
 
 
-interface EmployeeRepository: JpaRepository<Employee,Long>
+interface EmployeeRepository : JpaRepository<Employee, Long>
