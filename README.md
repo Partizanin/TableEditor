@@ -6,6 +6,23 @@
  
 ![Prewiew image of Project](https://i.imgur.com/HdNEamd.png)
 
+
+
+### Technology stack 
+- **Front-End**
+  - Angular 5
+  - Bootstrap
+  - TypeScript
+  - font-awesome
+  - mocha
+  
+- **Back-End**
+  - Java/Kotlin
+  - Spring-Boot
+  - MySQL
+  - Rest
+ 
+
 ### How to try ?
 For run app yourself you must have a MySQL data base, 
 with table of users which you can take from  <code>"src\main\resources\database\employees_data.sql"</code>.
