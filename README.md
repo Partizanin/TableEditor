@@ -31,10 +31,15 @@ After that you have two-way to run application.
 
 ##### In docker?
 in command prompt run:
+
 <code> docker run -e 'ACCEPT_EULA=Y' -e MYSQL_ROOT_PASSWORD=user -p 3306:3306 --name mysqlDB -d mysql/mysql-server:latest </code> (create the container)
+
 <code>docker exec -it mysqlDB mysql -uroot -p </code>   (login with a password 'user')
+
 <code>CREATE USER 'user'@'%' IDENTIFIED BY 'user'; </code> (create the user for a db)
+
 <code> GRANT ALL PRIVILEGES ON employees.* TO 'user'@'%'; </code> (grant privileges for user)
+
 <code>CREATE DATABASE IF NOT EXISTS employees; </code> (create a db)
 ### Runing
 
