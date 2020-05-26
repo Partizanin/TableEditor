@@ -27,3 +27,5 @@ out
 target
 lib
 
+/src/web/myApp/browserslist
+src/main/resources/static

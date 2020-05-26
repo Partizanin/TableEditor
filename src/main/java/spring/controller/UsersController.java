@@ -1,6 +1,5 @@
-package spring.resource;
+package spring.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import spring.model.User;
 import spring.repository.UsersRepository;
@@ -11,8 +10,12 @@ import java.util.List;
 @RequestMapping("/api")
 public class UsersController {
 
-    @Autowired
+    final
     UsersRepository usersRepository;
+
+    public UsersController(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") int id) {
@@ -22,7 +25,6 @@ public class UsersController {
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-//    public @ResponseBody
     public void update(@PathVariable("id") int id, @RequestBody User user) {
         System.out.println("Update user " + id);
         usersRepository.saveAndFlush(user);
@@ -34,7 +36,6 @@ public class UsersController {
         usersRepository.saveAndFlush(user);
     }
 
-    //    @GetMapping("/all")
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<User> read() {
         return usersRepository.findAll();

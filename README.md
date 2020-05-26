@@ -34,7 +34,7 @@ After that you have two way to run aplication.
 ##### First way
 You can build angular application with command <code>npm build</code>, when  the building is over, 
 you will be have, aplication file at resource package of spring aplication <code>src\main\resources\static</code>, 
-next you can run spring aplication and visit web page <code>http://localhost:8080</code> with this application.
+next you can run spring aplication and visit web page <code>http://localhost:8080 </code> with this application.
 
 ##### Second way
-For run application you need run spring application <code>src\main\java\spring\SpringJpaHibernateExampleApplication.java</code>, and angular application with command<code>npm start</code>, after the you can visit web page <code>http://localhost:4200</code> and enjoy of application.
+For run application you need run spring application <code>src\main\java\spring\SpringJpaHibernateExampleApplication.java</code>, and angular application with command<code>npm start</code>, after the you can visit web page <code>http://localhost:4200 </code> and enjoy of application.
