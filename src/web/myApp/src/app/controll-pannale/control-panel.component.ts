@@ -27,7 +27,7 @@ export class ControlPanelComponent implements OnInit {
     this.service.showModal(action);
   }
 
-  selectedChange(event) {//todo: fix
+  selectedChange(event) {
     let action = new Action();
     action.actionEvent = 'new itemPerPage value';
     action.data = event.target.value;

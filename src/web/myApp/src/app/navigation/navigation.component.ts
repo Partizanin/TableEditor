@@ -31,6 +31,19 @@ export class NavigationComponent implements OnInit {
       this.pages = this.pagination.getPages();
     })
 
+    this.service.itemsPerPageChangeEvent.subscribe((action: Action) => {
+      if (action.data === "all") {
+        this.totalPages = 1;
+        this.pages = [1];
+      } else {
+        this.service.totalPagesEvent.subscribe((totalPages) => {
+          this.totalPages = totalPages;
+          this.pagination.setTotalPages(this.totalPages);
+          this.pages = this.pagination.getPages();
+        });
+      }
+    })
+
     this.currentPage = 1;
     this.paginationLength = 4;
   }
@@ -41,6 +54,7 @@ export class NavigationComponent implements OnInit {
   }
 
   setPage(newPageNumber?) {
+    if (newPageNumber === this.currentPage) return
     if (newPageNumber) this.currentPage = newPageNumber;
 
     this.action.actionEvent = 'new page';

@@ -18,6 +18,9 @@ export class AppTableComponent implements OnInit {
   sortedIconClass: string;
   searchValue: string;
   searchColumn: string;
+  pageSize: string;
+  pageNumber: number;
+  totalElements: number;
 
   constructor(private service: AppService) {
     this.service.searchValueChange.subscribe((action: Action) => {
@@ -25,11 +28,25 @@ export class AppTableComponent implements OnInit {
     });
 
     this.service.navigationActionEvent.subscribe((action: Action) => {
-      this.navigationActionListener(action);
+      this.pageNumber = action.data;
+      this.updateTable(this.pageNumber, this.pageSize);
     });
 
     this.service.tableInit.subscribe((data: PageContainer) => {
       this.users = data.data;
+      this.pageSize = data.pageSize
+      this.pageNumber = 1;
+      this.totalElements = data.totalElements;
+    });
+
+    this.service.itemsPerPageChangeEvent.subscribe((action: Action) => {
+      if (action.data === "all") {
+        this.pageNumber = 1;
+        this.pageSize = this.totalElements.toString();
+      } else {
+        this.pageSize = action.data;
+      }
+      this.updateTable(this.pageNumber, this.pageSize);
     });
   }
 
@@ -67,11 +84,11 @@ export class AppTableComponent implements OnInit {
     }
   }
 
-  private navigationActionListener(action: Action) {//change page number
-    let pageNumber = action.data;
-    let pageSize = 10;
+  updateTable(pageNumber, pageSize) {
     this.service.getUsers(pageNumber, pageSize).subscribe((pageContainer) => {
       this.users = pageContainer.data;
+      this.totalElements = pageContainer.totalElements;
+      this.service.setTotalPages(pageContainer.totalPages);
     })
   }
 

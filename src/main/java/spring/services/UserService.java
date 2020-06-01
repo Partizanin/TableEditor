@@ -42,6 +42,6 @@ public class UserService {
     public PageContainer getPage(int pageNumber, int pageSize) {
         Page<User> userPage = usersRepository.findAll(
                 PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.ASC, "id")));
-        return new PageContainer(userPage.getTotalElements(), userPage.getTotalPages(), userPage.getContent());
+        return new PageContainer(userPage.getTotalElements(), userPage.getTotalPages(), String.valueOf(userPage.getSize()), userPage.getContent());
     }
 }

@@ -24,10 +24,7 @@ export class PaginationService {
                             paginationLength: number = this.paginationLength,
                             totalPages: number = this.totalPages) {
     let result = [];
-    // if (this.itemsPerPage.toString() == 'all') this.pages = [1]; todo:fix
-
     let paginationFlag = this.currentPage + paginationLength > totalPages + 1;
-
     let pageStart = newPageNumber;
 
     if (pageStart > 1) {
@@ -46,5 +43,9 @@ export class PaginationService {
     }
 
     this.pages = result;
+  }
+
+  setTotalPages(totalPages) {
+    this.totalPages = totalPages;
   }
 }

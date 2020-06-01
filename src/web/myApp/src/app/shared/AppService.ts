@@ -13,6 +13,7 @@ export class AppService {
   filteredUsers: User[];
   tableInit: EventEmitter<any> = new EventEmitter<any>();
   userRemove: EventEmitter<any> = new EventEmitter<any>();
+  totalPagesEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private userService: TableService) {
     this.filteredUsers = [];
@@ -23,6 +24,10 @@ export class AppService {
         this.tableInit.emit(data);
       }
     );
+  }
+
+  setTotalPages(totalPages) {
+    this.totalPagesEvent.emit(totalPages)
   }
 
   getUsers(pageNumber, pageSize) {
