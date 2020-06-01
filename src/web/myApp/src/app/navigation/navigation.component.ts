@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Action, AppService} from '../shared/AppService';
-import {User} from '../shared/User';
-import {Paginatoin} from './Pagination';
+import {User} from '../models/User';
+import {PaginationService} from './PaginationService';
+import {PageContainer} from "../models/PageContainer";
 
 @Component({
   selector: 'app-navigation',
@@ -9,92 +10,45 @@ import {Paginatoin} from './Pagination';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  users: User[];
-  pagination: Paginatoin;
-  currentPage: number;
-  itemsPerPage: any;
-  paginationLength: number;
-  totalPages: number;
-  pages: number[];
+  pagination: PaginationService;
+  currentPage: number = 1;
+  paginationLength: number = 3;
+  totalPages: number = 0;
+  pages: number[] = [];
+  action: Action = new Action();
 
   constructor(private service: AppService) {
-    this.service.itemsPerPageChangeEvent.subscribe((action: Action) => {
-      this.controlPannelActionListener(action);
-    });
     this.service.userRemove.subscribe((users: User[]) => {
-      this.pagination.setUsers(users);
       this.setPage();
     });
 
+    this.service.tableInit.subscribe((data: PageContainer) => {
+      this.totalPages = data.totalPages
+
+      this.pagination = new PaginationService(
+        this.paginationLength, this.currentPage, this.totalPages);
+
+      this.pages = this.pagination.getPages();
+    })
 
     this.currentPage = 1;
-    this.itemsPerPage = 10;
-    this.paginationLength = 6;
-
+    this.paginationLength = 4;
   }
 
   ngOnInit() {
-    this.pages = [];
-    this.users = [];
 
-    this.service.userInit.subscribe((users: User[]) => {
-      this.paginationInit();
-      this.pagination.users = users;
-    });
 
   }
 
   setPage(newPageNumber?) {
     if (newPageNumber) this.currentPage = newPageNumber;
 
-    this.users = this.pagination.getUsers(this.currentPage, this.itemsPerPage);
-    this.currentPage = this.pagination.getCurrentPage();
+    this.action.actionEvent = 'new page';
+    this.action.data = newPageNumber;
+
+    this.service.updateUsers(this.action);
+    this.pagination.setCurrentPage(newPageNumber);
     this.pages = this.pagination.getPages();
-    this.totalPages = this.pagination.getTotalPage();
-    this.paginationLength = this.pagination.getPaginationLength();
-
-    let action = new Action();
-
-    action.actionEvent = 'new users';
-    action.data = this.users;
-
-    this.service.updateUsers(action);
   }
 
-  private paginationInit() {
-    this.pagination = new Paginatoin(
-      this.itemsPerPage, this.paginationLength,
-      this.service.users, this.currentPage);
-
-    this.totalPages = this.pagination.totalPages;
-    this.pages = this.pagination.pages;
-    this.users = this.pagination.getUsers(this.currentPage, this.itemsPerPage);
-    let action = new Action();
-    action.actionEvent = 'new users';
-    action.data = this.users;
-    this.service.updateUsers(action);
-  }
-
-  private controlPannelActionListener(action: Action) {
-    let actionEvent: string = action.actionEvent;
-    switch (actionEvent) {
-      case 'new itemPerPage value':
-        this.setItemPerPage(action.data);
-        break;
-    }
-  }
-
-  private setItemPerPage(itemPerPage: any) {
-    this.itemsPerPage = itemPerPage;
-    if (this.itemsPerPage == 'all') {
-      this.currentPage = 1;
-      this.itemsPerPage = itemPerPage;
-      this.setPage(1);
-    } else {
-      this.itemsPerPage = itemPerPage;
-      this.pagination.setItemPerPage(itemPerPage);
-      this.setPage(1);
-      this.totalPages = this.pagination.totalPages;
-    }
-  }
 }

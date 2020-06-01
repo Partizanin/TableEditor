@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {Action, AppService} from '../shared/AppService';
-import {User} from '../shared/User';
+import {User} from '../models/User';
+import {PageContainer} from "../models/PageContainer";
 
 @Component({
-  selector: 'app-tabel',
-  templateUrl: './app-tabel.component.html',
-  styleUrls: ['./app-tabel.component.css']
+  selector: 'app-table',
+  templateUrl: './app-table.component.html',
+  styleUrls: ['./app-table.component.css']
 
 })
 
-export class AppTabelComponent implements OnInit {
+export class AppTableComponent implements OnInit {
   users: User[];
   orderByField: string;
   reverseSort: boolean;
@@ -20,11 +21,15 @@ export class AppTabelComponent implements OnInit {
 
   constructor(private service: AppService) {
     this.service.searchValueChange.subscribe((action: Action) => {
-      this.controlPannelActionListener(action);
+      this.controlPanelActionListener(action);
     });
 
     this.service.navigationActionEvent.subscribe((action: Action) => {
       this.navigationActionListener(action);
+    });
+
+    this.service.tableInit.subscribe((data: PageContainer) => {
+      this.users = data.data;
     });
   }
 
@@ -36,7 +41,23 @@ export class AppTabelComponent implements OnInit {
     this.users = this.service.filteredUsers;
   }
 
-  private controlPannelActionListener(action: Action) {
+  showEdithModal(user: User) {
+    let action = new Action();
+    action.actionEvent = 'open modal dialog edit';
+    action.data = user;
+    this.service.showModal(action);
+  }
+
+  removeUser(user: User) {
+    let foundedUser = this.users.find(arrayUser => arrayUser.id == user.id);
+    let index = this.users.indexOf(foundedUser);
+    if (index > -1) {
+      this.service.removeUser(user);
+
+    }
+  }
+
+  private controlPanelActionListener(action: Action) {
     let actionEvent: string = action.actionEvent;
     switch (actionEvent) {
       case 'new search value':
@@ -46,24 +67,12 @@ export class AppTabelComponent implements OnInit {
     }
   }
 
-  private navigationActionListener(action: Action) {
-    this.users = action.data;
-  }
-
-  showEdithMoadal(user: User) {
-    let action = new Action();
-    action.actionEvent = 'open modal dialog edit';
-    action.data = user;
-    this.service.showModal(action);
-  }
-
-  removeUser(user: User) {
-    let findedUser = this.users.find(arrayUser => arrayUser.id == user.id);
-    let index = this.users.indexOf(findedUser);
-    if (index > -1) {
-      this.service.removeUser(user);
-
-    }
+  private navigationActionListener(action: Action) {//change page number
+    let pageNumber = action.data;
+    let pageSize = 10;
+    this.service.getUsers(pageNumber, pageSize).subscribe((pageContainer) => {
+      this.users = pageContainer.data;
+    })
   }
 
   sortClick(event) {

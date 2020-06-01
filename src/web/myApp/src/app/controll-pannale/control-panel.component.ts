@@ -2,14 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {Action, AppService} from '../shared/AppService';
 
 @Component({
-  selector: 'app-controll-pannale',
-  templateUrl: './controll-pannale.component.html',
-  styleUrls: ['./controll-pannale.component.css']
+  selector: 'app-control-panel',
+  templateUrl: './control-panel.component.html',
+  styleUrls: ['./control-panel.component.css']
 })
-export class ControllPannaleComponent implements OnInit {
+export class ControlPanelComponent implements OnInit {
   itemsPerPage = ['10', '15', '20', 'all'];
   selectedItemPerPage: string = '10';
-  prewiousSelectedWalue = this.selectedItemPerPage;
+  previousSelectedValue = this.selectedItemPerPage;
   searchValue: string;
   searchByColumn = 'All columns';
 
@@ -27,12 +27,12 @@ export class ControllPannaleComponent implements OnInit {
     this.service.showModal(action);
   }
 
-  selectedChange(event) {
+  selectedChange(event) {//todo: fix
     let action = new Action();
     action.actionEvent = 'new itemPerPage value';
     action.data = event.target.value;
     this.service.changeItemsPerPageValue(action);
-    this.prewiousSelectedWalue = this.selectedItemPerPage;
+    this.previousSelectedValue = this.selectedItemPerPage;
   }
 
   changeInput(event) {

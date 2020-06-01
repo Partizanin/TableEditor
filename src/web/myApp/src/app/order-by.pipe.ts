@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {User} from './shared/User';
+import {User} from './models/User';
 
 @Pipe({
   name: 'orderBy'
@@ -8,7 +8,7 @@ export class OrderByPipe implements PipeTransform {
 
   transform(users: any, sortedField: string, reversSort: boolean = false): any {
 
-    let sortedUser = users.sort((user1: User, user2: User) => {
+    return users.sort((user1: User, user2: User) => {
 
       if (reversSort) {
         let temp = user1;
@@ -81,8 +81,6 @@ export class OrderByPipe implements PipeTransform {
 
       return result;
     });
-
-    return sortedUser;
   }
 
 }
