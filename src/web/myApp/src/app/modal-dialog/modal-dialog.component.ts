@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Action, AppService} from '../shared/AppService';
-import {User} from '../shared/User';
+import {User} from '../models/User';
 
 declare var $: any;
 
@@ -23,7 +23,7 @@ export class ModalDialogComponent implements OnInit {
   private isValid = true;
 
   constructor(private service: AppService) {
-    this.service.controlPannelActionEvent.subscribe((action: Action) => {
+    this.service.controlPanelActionEvent.subscribe((action: Action) => {
       this.controlPannelActionListener(action);
     });
   }

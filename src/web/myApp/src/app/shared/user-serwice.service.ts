@@ -1,15 +1,16 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {User} from './User';
+import {User} from '../models/User';
 import {Observable} from 'rxjs/Observable';
+import {PageContainer} from "../models/PageContainer";
 
 @Injectable()
-export class UserService {
+export class TableService {
 
   constructor(private http: HttpClient) {
   }
 
-  delete(user: User) {
+  deleteUser(user: User) {
     console.log('delete User');
     this.http.delete('/api/' + user.id).subscribe(data => {
     }, error => {
@@ -17,8 +18,7 @@ export class UserService {
     });
   }
 
-  update(user: User) {
-
+  updateUser(user: User) {
     const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json',})};
     console.log('update User');
     let url = '/api/' + user.id;
@@ -28,13 +28,14 @@ export class UserService {
     });
   }
 
-  read() {
+  readUsers(page, size) {
     console.log('read Users');
     let url = '/api/all';
-    return this.http.get(url) as Observable<User[]>;
+    let params = {page: page, size: size}
+    return this.http.get(url, {params: params}) as Observable<PageContainer>;
   }
 
-  create(user: User) {
+  createUser(user: User) {
     this.http.post('/api/create', user).subscribe(data => {
     }, error => {
       console.error(error)
