@@ -26,4 +26,6 @@ Koltin-Web-DB.iml
 out
 target
 lib
-
+*.iml
+/src/web/myApp/browserslist
+src/main/resources/static
