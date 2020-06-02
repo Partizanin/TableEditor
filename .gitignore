@@ -26,4 +26,5 @@ Koltin-Web-DB.iml
 out
 target
 lib
-
+browserslist
+*.iml
