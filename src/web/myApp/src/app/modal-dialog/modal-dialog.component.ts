@@ -14,7 +14,7 @@ export class ModalDialogComponent implements OnInit {
   display = 'none';
   modalTitle: string;
   idInput: string;
-  sallaryInput: string;
+  salaryInput: string;
   startDateInput: string;
   ageInput: string;
   officeInput: string;
@@ -24,7 +24,7 @@ export class ModalDialogComponent implements OnInit {
 
   constructor(private service: AppService) {
     this.service.controlPanelActionEvent.subscribe((action: Action) => {
-      this.controlPannelActionListener(action);
+      this.controlPanelActionListener(action);
     });
   }
 
@@ -36,7 +36,7 @@ export class ModalDialogComponent implements OnInit {
 
     let user = new User(
       parseInt(this.idInput), this.nameInput, this.positionInput, this.officeInput,
-      parseInt(this.ageInput), this.startDateInput, this.sallaryInput);
+      parseInt(this.ageInput), this.startDateInput, this.salaryInput);
 
 
     if (this.modalTitle === 'Create new user') {
@@ -59,7 +59,7 @@ export class ModalDialogComponent implements OnInit {
     }
   }
 
-  private controlPannelActionListener(action: Action) {
+  private controlPanelActionListener(action: Action) {
     let actionEvent = action.actionEvent;
     switch (actionEvent) {
       case 'open modal dialog create':
@@ -80,7 +80,7 @@ export class ModalDialogComponent implements OnInit {
     this.officeInput = '';
     this.ageInput = '';
     this.startDateInput = '';
-    this.sallaryInput = '';
+    this.salaryInput = '';
 
     this.modalTitle = 'Create new user';
     $('#modal').modal('show');
@@ -96,7 +96,7 @@ export class ModalDialogComponent implements OnInit {
     this.officeInput = user.office;
     this.ageInput = user.age.toString();
     this.startDateInput = user.startDate;
-    this.sallaryInput = user.salary;
+    this.salaryInput = user.salary;
 
     $('#modal').modal('show');
   }

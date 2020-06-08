@@ -56,7 +56,7 @@ let users = [
     startDate: '29.03.2012',
     salary: '$433,060'
   },];
-let expectedUsers = users;
+
 let orderByPipe = new OrderByPipe();
 
 function log(expected, actual) {

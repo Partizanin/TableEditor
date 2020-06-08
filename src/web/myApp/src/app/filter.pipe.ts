@@ -6,7 +6,7 @@ import {User} from './models/User';
 })
 export class FilterPipe implements PipeTransform {
 
-  private static getFilterredUsers(byColumn: any, user: User, searchValue: any) {
+  private static getFilteredUsers(byColumn: any, user: User, searchValue: any) {
     let expectedValue = '';
 
     switch (byColumn) {
@@ -46,7 +46,7 @@ export class FilterPipe implements PipeTransform {
     if (searchValue == undefined || searchValue.length == 0) return users;
 
     return users.filter(user => {
-      return FilterPipe.getFilterredUsers(byColumn, user, searchValue);
+      return FilterPipe.getFilteredUsers(byColumn, user, searchValue);
     });
     // console.log(`filteredUsers ${filteredUsers.length}`);
     // return filteredUsers;

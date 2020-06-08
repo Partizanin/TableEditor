@@ -12,7 +12,7 @@ export class TableService {
 
   deleteUser(user: User) {
     console.log('delete User');
-    this.http.delete('/api/' + user.id).subscribe(data => {
+    this.http.delete('/api/' + user.id).subscribe(() => {
     }, error => {
       console.error(error)
     });
@@ -22,7 +22,7 @@ export class TableService {
     const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json',})};
     console.log('update User');
     let url = '/api/' + user.id;
-    this.http.put(url, user, httpOptions).subscribe(data => {
+    this.http.put(url, user, httpOptions).subscribe(() => {
     }, error => {
       console.error(error)
     });
@@ -36,7 +36,7 @@ export class TableService {
   }
 
   createUser(user: User) {
-    this.http.post('/api/create', user).subscribe(data => {
+    this.http.post('/api/create', user).subscribe(() => {
     }, error => {
       console.error(error)
     });

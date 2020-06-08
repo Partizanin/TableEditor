@@ -44,6 +44,7 @@ export class AppTableComponent implements OnInit {
         this.pageNumber = 1;
         this.pageSize = this.totalElements.toString();
       } else {
+        this.pageNumber = 1;
         this.pageSize = action.data;
       }
       this.updateTable(this.pageNumber, this.pageSize);
@@ -93,7 +94,7 @@ export class AppTableComponent implements OnInit {
   }
 
   sortClick(event) {
-    let target = event.target || event.srcElement || event.currentTarget;
+    let target = event.target || event.currentTarget;
     this.orderByField = target.innerHTML.toLocaleLowerCase();
     this.reverseSort = !this.reverseSort;
 

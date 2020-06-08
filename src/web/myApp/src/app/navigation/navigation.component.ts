@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Action, AppService} from '../shared/AppService';
-import {User} from '../models/User';
 import {PaginationService} from './PaginationService';
 import {PageContainer} from "../models/PageContainer";
 
@@ -12,13 +11,13 @@ import {PageContainer} from "../models/PageContainer";
 export class NavigationComponent implements OnInit {
   pagination: PaginationService;
   currentPage: number = 1;
-  paginationLength: number = 3;
+  paginationLength: number = 4;
   totalPages: number = 0;
   pages: number[] = [];
   action: Action = new Action();
 
   constructor(private service: AppService) {
-    this.service.userRemove.subscribe((users: User[]) => {
+    this.service.userRemove.subscribe(() => {
       this.setPage();
     });
 
@@ -33,19 +32,22 @@ export class NavigationComponent implements OnInit {
 
     this.service.itemsPerPageChangeEvent.subscribe((action: Action) => {
       if (action.data === "all") {
+        this.currentPage = 1;
+        this.pagination.setTotalPages(1)
+        this.pagination.setCurrentPage(this.currentPage)
         this.totalPages = 1;
-        this.pages = [1];
       } else {
-        this.service.totalPagesEvent.subscribe((totalPages) => {
-          this.totalPages = totalPages;
-          this.pagination.setTotalPages(this.totalPages);
-          this.pages = this.pagination.getPages();
-        });
+        this.currentPage = 1;
+        this.pagination.setCurrentPage(this.currentPage)
       }
     })
 
-    this.currentPage = 1;
-    this.paginationLength = 4;
+    this.service.totalPagesEvent.subscribe((totalPages) => {
+      this.totalPages = totalPages;
+      this.pagination.setTotalPages(this.totalPages);
+      this.pages = this.pagination.getPages();
+    });
+
   }
 
   ngOnInit() {
@@ -62,7 +64,6 @@ export class NavigationComponent implements OnInit {
 
     this.service.updateUsers(this.action);
     this.pagination.setCurrentPage(newPageNumber);
-    this.pages = this.pagination.getPages();
   }
 
 }
